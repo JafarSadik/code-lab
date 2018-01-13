@@ -1,0 +1,27 @@
+# idea project files
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# java
+*.jar
+*.war
+*.class
+
+# gradle
+build/
+classes/
+.gradle/
+!gradle-wrapper.jar
+
+#vagant
+.vagrant
+
+# log files
+logs/
+*.log
+
+# virtual machine crash logs
+hs_err_pid*
