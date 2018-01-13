@@ -14,7 +14,12 @@ Vagrant.configure("2") do |config|
     # Install software
     config.vm.provision "shell", inline: <<-INSTALL_SOFTWARE
     sudo apt-get --yes --force-yes update
-    sudo apt-get --yes --force-yes install postgresql postgresql-contrib    
+    
+    # Postgresql
+    sudo apt-get --yes --force-yes install postgresql postgresql-contrib
+    sudo cp /vagrant/config/postgres/* /etc/postgresql/9.3/main/
+    sudo service postgresql restart
+    
     INSTALL_SOFTWARE
     
     # Initialize database
