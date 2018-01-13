@@ -62,7 +62,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>codelab.springboot.DesktopApplication</mainClass>
+                    <mainClass>codelab.springboot.PriceTickerApplication</mainClass>
                     <layout>JAR</layout>
                 </configuration>
             </plugin>

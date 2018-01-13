@@ -11,12 +11,12 @@ import org.springframework.web.client.RestTemplate;
 
 @EnableScheduling
 @SpringBootApplication
-public class DesktopApplication {
+public class PriceTickerApplication {
     /**
      * Application entry point.
      */
     public static void main(String[] args) {
-        SpringApplication.run(DesktopApplication.class, args);
+        SpringApplication.run(PriceTickerApplication.class, args);
     }
 
     @Bean
