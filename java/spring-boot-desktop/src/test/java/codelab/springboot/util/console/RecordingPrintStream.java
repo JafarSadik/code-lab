@@ -40,7 +40,7 @@ public class RecordingPrintStream extends PrintStream {
     }
 
     /**
-     * Use record() methods to construct {@link RecordingPrintStream}
+     * Use record() method to construct {@link RecordingPrintStream}
      */
     private RecordingPrintStream(OutputStream out) {
         super(out);

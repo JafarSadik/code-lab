@@ -1,7 +1,7 @@
 package codelab.springboot.model;
 
 /**
- * Constants commonly used currency pairs
+ * Constants for commonly used currency pairs
  */
 public class CurrencyPairs {
     // Bitcoin - US Dollar pair

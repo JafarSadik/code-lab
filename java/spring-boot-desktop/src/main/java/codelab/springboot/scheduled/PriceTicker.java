@@ -19,7 +19,7 @@ import java.util.List;
 public class PriceTicker {
     private final PriceResolver priceResolver;
     private final TimeService timeService;
-    private Console console = new NullConsole();
+    private volatile Console console = new NullConsole();
 
     @Autowired
     public PriceTicker(PriceResolver priceResolver, TimeService timeService) {
