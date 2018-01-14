@@ -50,10 +50,7 @@ public class PriceTickerTest {
         float LAST_PRICE = 111, VOLUME = 15100;
         Mockito.when(priceResolverMock.getSupportedCurrencyPairs()).thenReturn(asList(BTCUSD));
         Mockito.when(priceResolverMock.getLatestPrice(BTCUSD)).thenReturn(
-                new PriceBuilder()
-                        .setLastPrice(LAST_PRICE)
-                        .setVolume(VOLUME)
-                        .build()
+                new PriceBuilder().lastPrice(LAST_PRICE).volume(VOLUME).build()
         );
 
         // and TimeService set with a known, predefined time
@@ -86,7 +83,7 @@ public class PriceTickerTest {
         // Given PriceResolver configured to return 3 currency pairs and their prices
         List<CurrencyPair> currencyPairs = asList(BTCUSD, BTCEUR, BTCGBP);
         Mockito.when(priceResolverMock.getSupportedCurrencyPairs()).thenReturn(currencyPairs);
-        Price anyPrice = new PriceBuilder().setLastPrice(10.0f).setVolume(100).build();
+        Price anyPrice = new PriceBuilder().lastPrice(10.0f).volume(100).build();
         Mockito.when(priceResolverMock.getLatestPrice(BTCUSD)).thenReturn(anyPrice);
         Mockito.when(priceResolverMock.getLatestPrice(BTCEUR)).thenReturn(anyPrice);
         Mockito.when(priceResolverMock.getLatestPrice(BTCGBP)).thenReturn(anyPrice);

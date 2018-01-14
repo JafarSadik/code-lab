@@ -6,7 +6,6 @@ import codelab.springboot.model.Price;
 import codelab.springboot.service.price.PriceResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -29,16 +28,16 @@ public class BitfinexPriceResolver implements PriceResolver {
     }
 
     @Override
-    public Price getLatestPrice(CurrencyPair currencyPair) throws RestClientException {
+    public Price getLatestPrice(CurrencyPair currencyPair) throws RestClientRuntimeException {
         try {
             return restTemplate.getForObject(BitfinexApiURL.price(currencyPair), Price.class);
-        } catch (RestClientException e) {
+        } catch (Exception e) {
             throw new RestClientRuntimeException("Failed to obtain price for " + currencyPair, e);
         }
     }
 
     @Override
-    public List<CurrencyPair> getSupportedCurrencyPairs() throws RestClientException {
+    public List<CurrencyPair> getSupportedCurrencyPairs() throws RestClientRuntimeException {
         return Arrays.asList(BTCEUR, BTCUSD);
     }
 }

@@ -8,42 +8,42 @@ import codelab.springboot.model.Price;
 public class PriceBuilder {
     private Price price = new Price();
 
-    public PriceBuilder setMid(float mid) {
+    public PriceBuilder mid(float mid) {
         price.setMid(mid);
         return this;
     }
 
-    public PriceBuilder setBid(float bid) {
+    public PriceBuilder bid(float bid) {
         price.setBid(bid);
         return this;
     }
 
-    public PriceBuilder setAsk(float ask) {
+    public PriceBuilder ask(float ask) {
         price.setAsk(ask);
         return this;
     }
 
-    public PriceBuilder setLastPrice(float lastPrice) {
+    public PriceBuilder lastPrice(float lastPrice) {
         price.setLastPrice(lastPrice);
         return this;
     }
 
-    public PriceBuilder setLow(float low) {
+    public PriceBuilder low(float low) {
         price.setLow(low);
         return this;
     }
 
-    public PriceBuilder setHigh(float high) {
+    public PriceBuilder high(float high) {
         price.setHigh(high);
         return this;
     }
 
-    public PriceBuilder setVolume(float volume) {
+    public PriceBuilder volume(float volume) {
         price.setVolume(volume);
         return this;
     }
 
-    public PriceBuilder setTimestamp(float timestamp) {
+    public PriceBuilder timestamp(float timestamp) {
         price.setTimestamp(timestamp);
         return this;
     }

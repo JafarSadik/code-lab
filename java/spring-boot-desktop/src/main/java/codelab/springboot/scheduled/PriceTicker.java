@@ -29,6 +29,7 @@ public class PriceTicker {
 
     /**
      * Sets {@link Console} to be used for price update notifications.
+     *
      * @param console not mandatory, when not provided a default {@link NullConsole} implementation is used
      */
     @Autowired(required = false)
