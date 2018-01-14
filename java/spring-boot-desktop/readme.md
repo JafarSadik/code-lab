@@ -9,8 +9,6 @@ The project makes use of Bitfinex REST API to fetch currency pairs and prices.
 ### Build and run
 Minimum requirement is JDK 8 and Maven 3. Run the following commands:
 ```
-git clone https://github.com/JafarSadik/code-lab.git
-cd code-lab
 mvn clean install
 cd target
 java -jar spring-boot-desktop-0.1.jar
