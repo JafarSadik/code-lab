@@ -13,6 +13,3 @@ mvn clean install
 cd target
 java -jar spring-boot-desktop-0.1.jar
 ```
-
-
-
