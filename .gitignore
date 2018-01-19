@@ -28,6 +28,7 @@ classes/
 # sbt
 lib_managed
 target/
+project/build.properties
 project/boot
 project/build/target
 project/plugins/
