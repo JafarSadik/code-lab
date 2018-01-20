@@ -2,7 +2,6 @@ package example
 
 import scala.annotation.tailrec
 
-
 object Lists {
   /**
     * This method computes the sum of all elements in the list xs. There are
@@ -45,7 +44,7 @@ object Lists {
     @tailrec
     def max(xs: List[Int], acc: Int): Int = {
       if (xs.isEmpty) acc
-      else max(xs.tail, acc.max(xs.head))
+      else max(xs.tail, acc max xs.head)
     }
 
     max(xs.tail, xs.head)

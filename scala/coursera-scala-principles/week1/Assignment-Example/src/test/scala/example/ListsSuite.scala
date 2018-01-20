@@ -118,7 +118,37 @@ class ListsSuite extends FunSuite {
     assert(sum(List(1, 2, 0)) === 3)
   }
 
+  test("sum of empty list should be zero") {
+    assert(sum(Nil) == 0)
+  }
+
+  test("sum of multiple zeros") {
+    assert(sum(List(0, 0, 0, 0, 0, 0)) === 0)
+  }
+
+  test("sum of repeated numbers") {
+    assert(sum(List(1, 1, 2, 2, 2, 2)) === 10)
+  }
+
+  test("sum of negative and positive numbers") {
+    assert(sum(List(-3, -2, -1, 0, 1, 2, 3)) === 0)
+  }
+
+  test("max of single number") {
+    assert(max(11 :: Nil) === 11)
+  }
+
+  test("max of negative and positive numbers") {
+    assert(max(List(-3, -2, -1, 0, 1, 2, 3)) === 3)
+  }
+
   test("max of a few numbers") {
     assert(max(List(3, 7, 2)) === 7)
+  }
+
+  test("max throws exception for empty list") {
+    intercept[NoSuchElementException] {
+      max(Nil)
+    }
   }
 }
