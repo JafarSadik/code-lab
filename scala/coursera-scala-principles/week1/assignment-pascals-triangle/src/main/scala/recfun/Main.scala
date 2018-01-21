@@ -13,7 +13,16 @@ object Main {
   /**
     * Exercise 1
     */
-  def pascal(c: Int, r: Int): Int = ???
+  def pascal(column: Int, row: Int): Int = {
+    val triangleEdge = column == 0 || column == row
+
+    if (triangleEdge) 1
+    else {
+      val left = pascal(column - 1, row - 1)
+      val right = pascal(column, row - 1)
+      left + right
+    }
+  }
 
   /**
     * Exercise 2
