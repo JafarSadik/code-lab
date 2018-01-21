@@ -45,5 +45,10 @@ object Main {
   /**
     * Exercise 3
     */
-  def countChange(money: Int, coins: List[Int]): Int = ???
+  def countChange(money: Int, availableCoins: List[Int]): Int = {
+    lazy val coins = availableCoins.sorted
+    if (coins.isEmpty || money == 0 || money - coins.head < 0) 0
+    else if (money - coins.head == 0) 1
+    else countChange(money - coins.head, coins) + countChange(money, coins.tail)
+  }
 }
