@@ -5,7 +5,7 @@
 *.iws
 out/
 
-# java
+# java, scala
 *.jar
 *.war
 *.class
@@ -23,6 +23,13 @@ build/
 classes/
 .gradle/
 !gradle-wrapper.jar
+
+# sbt
+lib_managed
+target/
+project/boot
+project/build/target
+project/plugins/
 
 #vagant
 .vagrant
