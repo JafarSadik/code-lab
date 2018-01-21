@@ -9,7 +9,6 @@ out/
 *.jar
 *.war
 *.class
-*.sc 
 
 #maven
 target/
