@@ -1,6 +1,6 @@
 import scala.annotation.tailrec
 
-// A trait representing an ordered collection of elements of type T.
+// A trait representing an ordered collection of Int elements.
 trait IntList {
   // Returns true if the list does not contain any elements
   def isEmpty: Boolean
@@ -24,7 +24,7 @@ trait IntList {
   def :::(list: IntList): IntList
 }
 
-// Non-empty implementation of list
+// Implementation of non-empty list
 class ImmutableList(val head: Int, val tail: IntList) extends IntList {
   def isEmpty = false
 
@@ -51,7 +51,7 @@ class ImmutableList(val head: Int, val tail: IntList) extends IntList {
   }
 }
 
-// Empty implementation of list
+// Implementation of empty list
 object EmptyList extends IntList {
   def ifEmpty: Boolean = true
 
