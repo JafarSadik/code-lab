@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+
+    <tlib-version>1.0</tlib-version>
+    <short-name>simple-tag-lib</short-name>
+    <uri>http://mycompany.com/simple-tag-lib</uri>
+
+    <listener>
+        <listener-class>learning.webapps.presentation.tags.listeners.AddPageContext</listener-class>
+    </listener>
+
+    <tag>
+        <description>Context boxing tag</description>
+        <name>box</name>
+        <tag-class>learning.webapps.presentation.tags.ContentBoxingTag</tag-class>
+        <body-content>scriptless</body-content>
+        <attribute>
+            <name>borderColor</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description>Tag iterates over list of objects publishing list items as page scoped attributes.</description>
+        <name>foreach</name>
+        <tag-class>learning.webapps.presentation.tags.ForEachTag</tag-class>
+        <body-content>scriptless</body-content>
+
+        <variable>
+            <name-from-attribute>statusVar</name-from-attribute>
+            <variable-class>learning.webapps.presentation.tags.ForEachStatusVar</variable-class>
+            <declare>true</declare>
+            <scope>NESTED</scope>
+        </variable>
+
+        <attribute>
+            <name>var</name>
+            <required>true</required>
+            <rtexprvalue>false</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>items</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.util.List</type>
+        </attribute>
+        <attribute>
+            <name>statusVar</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
+
+    </tag>
+
+    <tag>
+        <description>Tag changes given url by adding context path if necessary</description>
+        <name>url</name>
+        <tag-class>learning.webapps.presentation.tags.URLTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>value</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <name>var</name>
+            <required>false</required>
+            <rtexprvalue>false</rtexprvalue>
+            <type>java.lang.String</type>
+        </attribute>
+    </tag>
+
+</taglib>

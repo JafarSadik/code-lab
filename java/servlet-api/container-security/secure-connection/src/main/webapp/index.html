@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<body>
+<p>Container form authentication over secure connection</p>
+<a href="secure/protected-file">Show protected file</a>
+<hr/>
+<p style="font-style: italic;">
+    Before running this sample you need:<br>
+    a. configure key-store; it is java platform mechanism for managing keys and certificates; Start by adding self signed certificate: <br>
+    keytool -genkey -alias tomcat -keyalg RSA<br>
+    This command should create .keystore file in user home directory; afterwards tomcat will look this file to find certificates.<br>
+    In production you typically import certificate signed by certificate authority<br>
+    b. modify tomcat server.xml configuration by removing comments around https section. Tomcat will automatically load
+    certificate if
+    transport quarantee is set to confidential.
+<p style="font-style: italic; color: blue;">
+    &lt;Connector port="8443" protocol="HTTP/1.1" SSLEnabled="true"
+    maxThreads="150" scheme="https" secure="true"
+    clientAuth="false" sslProtocol="TLS" keystorePass="qazwsx"/&gt;
+</p>
+</p>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+
+    <filter>
+        <filter-name>Filter1</filter-name>
+        <filter-class>learning.webapps.Filter1</filter-class>
+        <init-param>
+            <param-name>message</param-name>
+            <param-value>Filter 1 was here :)</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>Filter2</filter-name>
+        <filter-class>learning.webapps.Filter2</filter-class>
+        <init-param>
+            <param-name>message</param-name>
+            <param-value>Filter 2 intercepted this request :D</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>Filter1</filter-name>
+        <servlet-name>DefaultServlet</servlet-name>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>Filter2</filter-name>
+        <url-pattern>/resources/*</url-pattern>
+        <url-pattern>*.ext</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+    </filter-mapping>
+
+    <servlet>
+        <servlet-name>DefaultServlet</servlet-name>
+        <servlet-class>learning.webapps.DefaultServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DefaultServlet</servlet-name>
+        <url-pattern>/resources/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DefaultServlet</servlet-name>
+        <url-pattern>/info</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DefaultServlet</servlet-name>
+        <url-pattern>*.ext</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DefaultServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>links-jsp</servlet-name>
+        <jsp-file>/WEB-INF/pages/links.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>links-jsp</servlet-name>
+        <url-pattern>/links.jsp</url-pattern>
+    </servlet-mapping>
+
+    <jsp-config>
+        <jsp-property-group>
+            <description>
+                Trim all white spaces created by tags and disable scripting.
+            </description>
+            <url-pattern>*.jsp</url-pattern>
+            <scripting-invalid>true</scripting-invalid>
+            <trim-directive-whitespaces>true</trim-directive-whitespaces>
+        </jsp-property-group>
+    </jsp-config>
+</web-app>

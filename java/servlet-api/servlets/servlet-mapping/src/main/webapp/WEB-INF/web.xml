@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+
+    <servlet>
+        <servlet-name>servletA</servlet-name>
+        <servlet-class>learning.webapps.ServletA</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>servletB</servlet-name>
+        <servlet-class>learning.webapps.ServletB</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>servletC</servlet-name>
+        <servlet-class>learning.webapps.ServletC</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>servletD</servlet-name>
+        <servlet-class>learning.webapps.ServletD</servlet-class>
+    </servlet>
+
+    <!-- Exact mapping -->
+    <servlet-mapping>
+        <servlet-name>servletA</servlet-name>
+        <url-pattern>/servlet</url-pattern>
+    </servlet-mapping>
+
+    <!-- Path mapping  -->
+    <servlet-mapping>
+        <servlet-name>servletB</servlet-name>
+        <url-pattern>/path/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Extension mapping -->
+    <servlet-mapping>
+        <servlet-name>servletC</servlet-name>
+        <url-pattern>*.ext</url-pattern>
+    </servlet-mapping>
+
+    <!-- Default mapping -->
+    <servlet-mapping>
+        <servlet-name>servletD</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+</web-app>

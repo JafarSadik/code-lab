@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+
+    <servlet>
+        <servlet-name>CreateSessionServlet</servlet-name>
+        <servlet-class>learning.webapps.CreateSessionServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>DestroySessionServlet</servlet-name>
+        <servlet-class>learning.webapps.DestroySessionServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CreateSessionServlet</servlet-name>
+        <url-pattern>/create</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>DestroySessionServlet</servlet-name>
+        <url-pattern>/destroy</url-pattern>
+    </servlet-mapping>
+
+    <listener>
+        <listener-class>learning.webapps.SampleSessionListener</listener-class>
+    </listener>
+
+    <filter>
+        <filter-name>DisableSessionCreationFilter</filter-name>
+        <filter-class>learning.webapps.filters.DisableSessionCreationFilter</filter-class>
+    </filter>
+
+    <!-- In order to disable session creation in JSP filter has to be applied to all dispatchers
+     but most important to use for REQUEST an FORWARD.-->
+    <filter-mapping>
+        <filter-name>DisableSessionCreationFilter</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>ERROR</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+</web-app>

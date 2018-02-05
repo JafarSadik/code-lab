@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>learning-web-apps</artifactId>
+        <groupId>learning-web-apps</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>servlets</artifactId>
+    <name>servlets</name>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>simple-servlet</module>
+        <module>servlet-mapping</module>
+        <module>upload-servlet</module>
+        <module>log4j-integration</module>
+        <module>error-handling</module>
+        <module>session-management</module>
+        <module>form-submission</module>
+        <module>http-cookies</module>
+        <module>env-entry</module>
+    </modules>
+</project>

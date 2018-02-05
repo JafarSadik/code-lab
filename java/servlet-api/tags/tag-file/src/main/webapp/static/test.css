@@ -1,0 +1,17 @@
+
+.menu-container {
+    float: left;
+    width: 200px;
+}
+
+.body-container {
+    width: 300px;
+    float: left;
+}
+
+.footer-container {
+    clear: both;
+    margin: 20px;
+    width: 400px;
+    float: right;
+}
