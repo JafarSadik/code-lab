@@ -1,4 +1,4 @@
-# About
+# Servlet API examples
 This project presents a basic usage of Servlet API:
 1. servlets, servlet mapping
 2. filters, filter mapping
@@ -21,7 +21,7 @@ cd servlets/simple-servlet
 mvn jetty:run
 ```
 
-By default jetty starts on port 8080: 
+By default [jetty listens on port 8080](http://localhost:8080). 
 
-[http://localhost:8080](http://localhost:8080)
+
 
