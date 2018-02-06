@@ -1,24 +1,17 @@
 package learning.webapps.filters.cache;
 
 
-import learning.webapps.DynamicResourceServlet;
-
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class CacheControlHeaderFilter implements Filter {
-
-    public final static int CACHE_AGE_SECONDS = 60 * 60 * 24 * 60;//60 days given in seconds
-
-    public final static int CACHE_AGE_MILLISECONDS = CACHE_AGE_SECONDS * 1000;//60 days given in milliseconds
-
-    private FilterConfig config;
+    private final static int CACHE_AGE_SECONDS = 60 * 60 * 24 * 60;//60 days given in seconds
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        this.config = filterConfig;
+    public void init(FilterConfig filterConfig) {
+
     }
 
     @Override

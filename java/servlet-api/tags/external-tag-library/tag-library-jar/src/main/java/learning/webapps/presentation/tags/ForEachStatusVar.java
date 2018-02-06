@@ -2,11 +2,8 @@ package learning.webapps.presentation.tags;
 
 
 public class ForEachStatusVar {
-
     private int index;
-
     private boolean first;
-
     private boolean last;
 
     public int getIndex() {

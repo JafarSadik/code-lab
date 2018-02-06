@@ -16,9 +16,7 @@ Build the project:
 mvn clean install
 ```
 
-Choose any submodule and run it with jetty container.
-
-Maven will automatically download Jetty 9 with all its dependencies.
+Choose any submodule and run it with jetty container. Maven will automatically download Jetty 9 with all its dependencies.
 ```
 cd servlets/simple-servlet
 mvn jetty:run

@@ -1,5 +1,5 @@
-<%@ page import="java.util.List" %>
 <%@ page import="java.util.LinkedList" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sl" uri="http://mycompany.com/simple-tag-lib" %>
 

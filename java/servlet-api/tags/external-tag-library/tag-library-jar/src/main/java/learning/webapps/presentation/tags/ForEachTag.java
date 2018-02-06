@@ -12,11 +12,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class ForEachTag extends SimpleTagSupport {
-
     private String varName;
-
     private String statusVarName;
-
     private List items;
 
     public void setVar(String var) {

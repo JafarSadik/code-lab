@@ -7,9 +7,11 @@
 <hr/>
 <p style="font-style: italic;">
     Before running this sample you need:<br>
-    a. configure key-store; it is java platform mechanism for managing keys and certificates; Start by adding self signed certificate: <br>
+    a. configure key-store; it is java platform mechanism for managing keys and certificates; Start by adding self
+    signed certificate: <br>
     keytool -genkey -alias tomcat -keyalg RSA<br>
-    This command should create .keystore file in user home directory; afterwards tomcat will look this file to find certificates.<br>
+    This command should create .keystore file in user home directory; afterwards tomcat will look this file to find
+    certificates.<br>
     In production you typically import certificate signed by certificate authority<br>
     b. modify tomcat server.xml configuration by removing comments around https section. Tomcat will automatically load
     certificate if

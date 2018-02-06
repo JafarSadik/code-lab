@@ -3,7 +3,8 @@ package learning.webapps;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import javax.servlet.*;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
 public class ApplicationContextListener implements ServletContextListener {
     @Override

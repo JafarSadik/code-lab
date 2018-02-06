@@ -12,11 +12,8 @@ import java.io.IOException;
 import java.util.List;
 
 public class ForEachTag extends SimpleTagSupport {
-
     private String varName;
-
     private String statusVarName;
-
     private List items;
 
     public void setVar(String var) {
@@ -44,17 +41,15 @@ public class ForEachTag extends SimpleTagSupport {
 
         for (Object item : items) {
             context.setAttribute(varName, item, PageContext.PAGE_SCOPE);
-            if (statusVar != null) {
-                statusVar.setFirst(first);
-                statusVar.setLast(last);
-                statusVar.setIndex(index);
-                context.setAttribute(statusVarName, statusVar, PageContext.PAGE_SCOPE);
+            statusVar.setFirst(first);
+            statusVar.setLast(last);
+            statusVar.setIndex(index);
+            context.setAttribute(statusVarName, statusVar, PageContext.PAGE_SCOPE);
 
-                first = false;
-                index++;
-                if (index >= items.size()) {
-                    last = true;
-                }
+            first = false;
+            index++;
+            if (index >= items.size()) {
+                last = true;
             }
             body.invoke(null);
         }

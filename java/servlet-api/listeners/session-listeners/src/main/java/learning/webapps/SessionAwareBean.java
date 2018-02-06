@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSessionBindingListener;
 
 
 public class SessionAwareBean implements HttpSessionBindingListener {
-
     @Override
     public void valueBound(HttpSessionBindingEvent event) {
         System.out.println("Object added to session: " + this);

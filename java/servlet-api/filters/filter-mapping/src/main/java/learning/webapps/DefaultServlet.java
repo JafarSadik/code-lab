@@ -10,7 +10,6 @@ import java.io.PrintWriter;
 import java.util.List;
 
 public class DefaultServlet extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final PrintWriter out = new PrintWriter(resp.getWriter());

@@ -7,11 +7,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Filter2 implements Filter {
-
     private String message;
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
         message = filterConfig.getInitParameter("message");
     }
 
@@ -24,7 +23,7 @@ public class Filter2 implements Filter {
     private void addMessage(ServletRequest request) {
         List<String> list = (List) request.getAttribute("messageList");
         if (list == null) {
-            list = new LinkedList<String>();
+            list = new LinkedList<>();
         }
         list.add(message);
         request.setAttribute("messageList", list);

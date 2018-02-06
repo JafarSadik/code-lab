@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class SimpleController extends HttpServlet {
-
     public Logger logger = Logger.getLogger(getClass());
 
     @Override

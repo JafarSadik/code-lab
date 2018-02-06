@@ -7,11 +7,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class AuthenticationFilter implements Filter {
-
     private final static boolean GET_SESSION_ONLY_IF_EXISTS = false;
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
 
     }
 

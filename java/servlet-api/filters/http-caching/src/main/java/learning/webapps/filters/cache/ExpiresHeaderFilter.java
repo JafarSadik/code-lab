@@ -7,16 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class ExpiresHeaderFilter implements Filter {
-
-    public final static int CACHE_AGE_SECONDS = 60 * 60 * 24 * 60;//60 days given in seconds
-
-    public final static int CACHE_AGE_MILLISECONDS = CACHE_AGE_SECONDS * 1000;//60 days given in milliseconds
-
-    private FilterConfig config;
+    private final static int CACHE_AGE_SECONDS = 60 * 60 * 24 * 60;//60 days given in seconds
+    private final static int CACHE_AGE_MILLISECONDS = CACHE_AGE_SECONDS * 1000;//60 days given in milliseconds
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        this.config = filterConfig;
+    public void init(FilterConfig filterConfig) {
+
     }
 
     @Override

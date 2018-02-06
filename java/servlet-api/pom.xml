@@ -6,6 +6,7 @@
     <groupId>learning-web-apps</groupId>
     <artifactId>learning-web-apps</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
     <modules>
         <module>filters</module>
@@ -15,7 +16,6 @@
         <module>tags</module>
         <module>container-security</module>
     </modules>
-    <packaging>pom</packaging>
 
     <build>
         <pluginManagement>

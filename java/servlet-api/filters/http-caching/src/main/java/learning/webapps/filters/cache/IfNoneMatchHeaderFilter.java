@@ -9,11 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class IfNoneMatchHeaderFilter implements Filter {
-    private FilterConfig config;
-
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        this.config = filterConfig;
+    public void init(FilterConfig filterConfig) {
+
     }
 
     @Override
@@ -43,10 +41,6 @@ public class IfNoneMatchHeaderFilter implements Filter {
 
     private boolean resourceModified(HttpServletRequest httpServletRequest) {
         final String etag = httpServletRequest.getHeader("If-None-Match");
-        if (etag != null) {
-            return !etag.equals(DynamicResourceServlet.eTag);
-        } else {
-            return true;
-        }
+        return etag == null || !etag.equals(DynamicResourceServlet.eTag);
     }
 }

@@ -12,14 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 public class UploadServlet extends HttpServlet {
-
-    final static Integer FILE_SIZE_MAX = 500000;//500kb
-    final static Integer MEMORY_THRESHOLD = 50000;//50kb
+    private final static Integer FILE_SIZE_MAX = 500000;//500kb
+    private final static Integer MEMORY_THRESHOLD = 50000;//50kb
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -44,9 +42,7 @@ public class UploadServlet extends HttpServlet {
         try {
             final ItemInfo itemInfo = new ItemInfo();
             final List<FileItem> fileItems = upload.parseRequest(req);
-            final Iterator iter = fileItems.iterator();
-            while (iter.hasNext()) {
-                FileItem fileItem = (FileItem) iter.next();
+            for (FileItem fileItem : fileItems) {
                 //We have to distinguish between between standard form fields and file field.
                 if (fileItem.isFormField()) {
                     itemInfo.setDescription(fileItem.getString());

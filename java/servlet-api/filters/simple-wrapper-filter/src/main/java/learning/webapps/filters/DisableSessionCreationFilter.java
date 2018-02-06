@@ -7,15 +7,11 @@ import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-/*
-    Disable session creation - but use existing.
- */
 public class DisableSessionCreationFilter implements Filter {
-
     private final static EmptyHttpSession EMPTY_HTTP_SESSION = new EmptyHttpSession();
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
 
     }
 

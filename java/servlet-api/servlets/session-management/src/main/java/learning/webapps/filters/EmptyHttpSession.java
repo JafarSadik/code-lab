@@ -6,8 +6,6 @@ import javax.servlet.http.HttpSessionContext;
 import java.util.Enumeration;
 
 public class EmptyHttpSession implements HttpSession {
-
-
     @Override
     public long getCreationTime() {
         return 0;

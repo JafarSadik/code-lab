@@ -2,7 +2,6 @@ package learning.webapps;
 
 
 public class Shop {
-
     public Shop(String name, String address, String city, String url) {
         this.name = name;
         this.address = address;

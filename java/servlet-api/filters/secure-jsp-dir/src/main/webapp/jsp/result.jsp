@@ -9,7 +9,7 @@
 <c:url var="url" value="/"/>
 
 <body>
-    The result is ${result} <br>
-    <a href="${url}">Back</a>
+The result is ${result} <br>
+<a href="${url}">Back</a>
 </body>
 </html>

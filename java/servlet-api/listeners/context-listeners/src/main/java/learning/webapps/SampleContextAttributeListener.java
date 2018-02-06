@@ -3,10 +3,8 @@ package learning.webapps;
 
 import javax.servlet.ServletContextAttributeEvent;
 import javax.servlet.ServletContextAttributeListener;
-import javax.servlet.ServletRequestAttributeEvent;
 
 public class SampleContextAttributeListener implements ServletContextAttributeListener {
-
     @Override
     public void attributeAdded(ServletContextAttributeEvent srae) {
         System.out.println("Context attribute added: " + srae.getName() + ", value: " + srae.getValue());

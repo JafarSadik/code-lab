@@ -9,16 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class IfModifiedSinceHeaderFilter implements Filter {
-
-    public final static int CACHE_AGE_SECONDS = 60 * 60 * 24 * 60;//60 days given in seconds
-
-    public final static int CACHE_AGE_MILLISECONDS = CACHE_AGE_SECONDS * 1000;//60 days given in milliseconds
-
-    private FilterConfig config;
-
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-        this.config = filterConfig;
+    public void init(FilterConfig filterConfig) {
+
     }
 
     @Override
@@ -30,9 +23,7 @@ public class IfModifiedSinceHeaderFilter implements Filter {
         if (httpGet && !resourceModified(httpServletRequest)) {
             httpServletResponse.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
         } else {
-            if (httpGet) {
-                setCachingHeaders(httpServletResponse);
-            }
+            if (httpGet) setCachingHeaders(httpServletResponse);
             chain.doFilter(request, response);
         }
     }
@@ -50,9 +41,7 @@ public class IfModifiedSinceHeaderFilter implements Filter {
 
     private boolean resourceModified(HttpServletRequest request) {
         final String IF_MODIFIED_SINCE = "If-Modified-Since";
-        if (request.getHeader(IF_MODIFIED_SINCE) != null) {
-            return request.getDateHeader(IF_MODIFIED_SINCE) < DynamicResourceServlet.lastModified;
-        }
-        return true;
+        return request.getHeader(IF_MODIFIED_SINCE) == null ||
+                request.getDateHeader(IF_MODIFIED_SINCE) < DynamicResourceServlet.lastModified;
     }
 }

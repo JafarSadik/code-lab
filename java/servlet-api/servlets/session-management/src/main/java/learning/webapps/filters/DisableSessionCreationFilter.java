@@ -11,11 +11,10 @@ import java.io.IOException;
     Disable session creation.
  */
 public class DisableSessionCreationFilter implements Filter {
-
     private final static EmptyHttpSession EMPTY_HTTP_SESSION = new EmptyHttpSession();
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
 
     }
 

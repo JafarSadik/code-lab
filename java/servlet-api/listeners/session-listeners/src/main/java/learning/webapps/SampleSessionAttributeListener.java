@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
 
 public class SampleSessionAttributeListener implements HttpSessionAttributeListener {
-
     @Override
     public void attributeAdded(HttpSessionBindingEvent se) {
         System.out.println(":: Attribute added to session with id: " + se.getSession().getId() + ", attribute: " + se.getName());

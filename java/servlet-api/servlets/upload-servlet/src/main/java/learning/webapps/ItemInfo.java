@@ -2,15 +2,10 @@ package learning.webapps;
 
 
 public class ItemInfo {
-
     private boolean uploadToMemory;
-
     private String description;
-
     private Long fileSize;
-
     private String fileName;
-
     private String contentType;
 
     public boolean isUploadToMemory() {

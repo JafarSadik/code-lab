@@ -10,9 +10,7 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
 
 public class ContentBoxingTag extends SimpleTagSupport {
-
     public final static String DEFAULT_BORDER_COLOR = "black";
-
     private String borderColor;
 
     public void setBorderColor(String borderColor) {

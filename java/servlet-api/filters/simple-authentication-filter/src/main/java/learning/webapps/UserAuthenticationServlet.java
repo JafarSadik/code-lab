@@ -1,6 +1,5 @@
 package learning.webapps;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,9 +7,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class UserAuthenticationServlet extends HttpServlet {
-
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         final String user = req.getParameter(WebApplicationConstants.Request.USER_NAME_PARAMETER_NAME);
         final String password = req.getParameter(WebApplicationConstants.Request.PASSWORD_PARAMETER_NAME);
         String redirectTo = req.getContextPath();
@@ -29,9 +27,7 @@ public class UserAuthenticationServlet extends HttpServlet {
     }
 
     private boolean validateCredentials(String user, String password) {
-        return user != null &&
-                password != null &&
-                user.equals("admin") &&
-                password.equals("admin");
+        return user != null && password != null &&
+                user.equals("admin") && password.equals("admin");
     }
 }

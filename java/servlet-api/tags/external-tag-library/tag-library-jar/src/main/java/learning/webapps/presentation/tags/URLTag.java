@@ -11,9 +11,7 @@ import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
 
 public class URLTag extends SimpleTagSupport {
-
     private String value;
-
     private String var;
 
     public void setValue(String value) {
