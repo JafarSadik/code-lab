@@ -22,7 +22,7 @@ gradle bootRun
 ```
 
 Server response for [http://localhost:8080/](http://localhost:8080/)
-```json
+```javascript
 {
   "version" : "1.0",
   "description" : "index page",
