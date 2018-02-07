@@ -9,7 +9,7 @@ gradle run
 ```
 
 You might want to generate a self-contained application with all necessary 
-dependencies and an embedded a servlet container by using spring-boot gradle plugin. 
+dependencies and an embedded servlet container by using spring-boot gradle plugin. 
 By default the plugin embeds Tomcat but with a bit of configuration, it's possible to use Jetty.
 ```
 gradle build
