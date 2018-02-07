@@ -1,6 +1,6 @@
 # Spring Boot with Groovy
 This example demonstrates how to create a simple REST endpoint using 
-spring boot with groovy and gradle. It's meant to be as simple as possible.
+spring boot with groovy and gradle.
 
 # Build and run
 Run the application using 'run' task from 'application' plugin.
