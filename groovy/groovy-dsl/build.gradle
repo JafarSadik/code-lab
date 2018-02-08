@@ -1,0 +1,30 @@
+apply plugin: 'groovy'
+apply plugin: 'application'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+mainClassName = "RobotMain"
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
+    }
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+shadowJar {
+    baseName = 'groovy-dsl'
+    classifier = null
+    version = null
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+    compile 'org.slf4j:slf4j-api:1.7.5'
+}
