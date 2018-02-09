@@ -10,7 +10,7 @@ moveTo 10, 10
 assertLocation 20, 10
 println("-----------------")
 
-// Or achieve the same using DSL-specific control structure
+// Or achieve the same with Robot DSL control structure
 times(10) {
     moveLeft 10
     moveRight 11
