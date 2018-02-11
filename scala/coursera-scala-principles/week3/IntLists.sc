@@ -98,6 +98,3 @@ list.get(4)
 emptyList ::: emptyList
 list ::: emptyList
 (1 :: 2 :: 3 :: EmptyList) ::: (4 :: 5 :: 6 :: EmptyList)
-
-
-
