@@ -126,6 +126,13 @@ class HuffmanSuite extends FunSuite {
     convert(createCodeTree("aaaabbbcc".toList)) should contain allOf(code('a', 0), code('c', 1, 0), code('b', 1, 1))
   }
 
+  test("encode & decode string with a full alphabet using a coding table") {
+    val text = "The quick brown fox jumps over the lazy dog".toList
+    val huffmanTree = createCodeTree(text)
+    val encodedText = quickEncode(huffmanTree)(text)
+    assert(decode(huffmanTree, encodedText) === text)
+  }
+
   private def code(args: AnyVal*): CodeTableEntry = args.toList match {
     case (char:Char) :: (bits:List[Int]) => (char, bits)
   }
