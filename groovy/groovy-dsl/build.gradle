@@ -24,6 +24,11 @@ shadowJar {
     version = null
 }
 
+run {
+    def script = System.properties.getProperty("script")
+    if (script != null) args Eval.me("['$script']")
+}
+
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.7'
     compile 'org.slf4j:slf4j-api:1.7.5'
