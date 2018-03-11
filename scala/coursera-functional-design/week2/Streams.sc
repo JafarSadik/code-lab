@@ -34,7 +34,7 @@ s"... $fibN1, $fibN2, $fibN3 ..."
 val x1 #:: x2 #:: x3 #:: _ = (10000 to 1000000000).toStream.filter(_ % 2 == 0)
 
 
-// Logistic map with an initial value 0.5 and parameter 3,99999
+// Logistic map with an initial value 0.8 and parameter 3,9
 // https://en.wikipedia.org/wiki/Logistic_map
 Stream.iterate(0.8)(n => 3.9 * n * (1 - n))
   .take(30).foreach(println(_))
