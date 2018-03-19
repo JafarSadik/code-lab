@@ -1,13 +1,15 @@
 /* For a water pouring problem, we start with a set of empty glasses with a predefined capacity and a target
 capacity that needs to be met by at least one of glasses. A solution is a sequence of moves (Fill,
 Empty, Pour) that results in a glass filled with a predefined amount of water */
-class WaterPouring(capacity: Vector[Int]) {
+class WaterPouring(glassCapacities: Vector[Int]) {
+  require(glassCapacities.nonEmpty, "Specify capacity of at least one glass")
+
   // States
   type State = Vector[Int]
-  val initialState: State = capacity.map(x => 0)
+  val initialState: State = glassCapacities.map(x => 0)
 
   // Available glasses <0, N)
-  val glasses = capacity.indices
+  val glasses = glassCapacities.indices
 
   // Moves: Empty, Fill and Pour water between glasses
   trait Move {
@@ -19,36 +21,43 @@ class WaterPouring(capacity: Vector[Int]) {
   }
 
   case class Fill(glass: Int) extends Move {
-    override def change(state: State) = state updated(glass, capacity(glass))
+    override def change(state: State) = state updated(glass, glassCapacities(glass))
   }
 
   case class Pour(from: Int, to: Int) extends Move {
     override def change(state: State) = {
-      val pourAmount = state(from) min (capacity(to) - state(to))
+      val pourAmount = state(from) min (glassCapacities(to) - state(to))
       state updated(from, state(from) - pourAmount) updated(to, state(to) + pourAmount)
     }
   }
 
-  // Possible moves based on available glasses:
-  // - can empty any non empty glass
-  // - can fill any non full glass
-  // - can pour water between different glasses if target glass is not full and source glass is not empty
-  def moves(water: State) =
-    (for (glass <- glasses; if water(glass) > 0) yield Empty(glass)) ++
-    (for (glass <- glasses; if water(glass) < capacity(glass)) yield Fill(glass)) ++
-    (
-      for {
-        fromGlass <- glasses; toGlass <- glasses
-        if fromGlass != toGlass
-        if water(fromGlass) > 0
-        if water(toGlass) < capacity(toGlass)
-      } yield Pour(fromGlass, toGlass)
-    )
-
   // Paths as reverse ordered history of state changes
   class Path(history: List[Move], val endState: State) {
+    // Calculate end state based on history (removed as it's more efficient to memorize current state)
     //def endState: State = (history foldRight initialState)(_ change _)
-    def extend(move: Move) = new Path(move :: history, move change endState)
+
+    // A sequence of all possible paths constructed by extending the current path with a single valid move
+    def nextPaths: Seq[Path] = moves map extend
+
+    // Extend the path with a single move
+    private def extend(move: Move) = new Path(move :: history, move change endState)
+
+    /* Establish possible moves based on the available glasses:
+      - can empty any non-empty glass
+      - can fill any non-full glass
+      - can pour water between different glasses if target glass is not full and source glass is not empty */
+    private def moves(): Seq[Move] =
+      (for (glass <- glasses; if endState(glass) > 0) yield Empty(glass)) ++
+      (for (glass <- glasses; if endState(glass) < glassCapacities(glass)) yield Fill(glass)) ++
+      (
+        for {
+          fromGlass <- glasses; toGlass <- glasses
+          if fromGlass != toGlass
+          if endState(fromGlass) > 0
+          if endState(toGlass) < glassCapacities(toGlass)
+        } yield Pour(fromGlass, toGlass)
+      )
+
     override def toString = (history.reverse mkString " ") + " --> " + endState + "\n"
   }
 
@@ -60,7 +69,7 @@ class WaterPouring(capacity: Vector[Int]) {
     else {
       val more = for {
         path <- paths
-        next <- moves(path.endState) map path.extend
+        next <- path.nextPaths
         if !(explored contains next.endState)
       } yield next
       paths #:: from(more, explored ++ (more map (_.endState)))
@@ -69,13 +78,15 @@ class WaterPouring(capacity: Vector[Int]) {
   // Set of all possible paths
   val pathSets = from(Set(initialPath), Set(initialState))
 
-  def solutions(target: Int): Stream[Path] =
+  def solutions(targetWaterLevel: Int): Stream[Path] =
     for {
       pathSet <- pathSets
       path <- pathSet
-      if path.endState contains target
+      if path.endState contains targetWaterLevel
     } yield path
 }
 
-val problem = new WaterPouring(Vector(4, 7, 1, 20))
-problem.solutions(13).take(20).toList
+new WaterPouring(glassCapacities = Vector(4, 7, 1, 20))
+  .solutions(targetWaterLevel = 17)
+  .take(10).toList
+
