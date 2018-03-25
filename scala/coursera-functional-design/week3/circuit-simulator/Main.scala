@@ -6,6 +6,7 @@ object Main {
     case "1" :: Nil => halfAdderSimulation()
     case "2" :: Nil => fullAdderSimulation()
     case "3" :: Nil => memoryCellSimulation()
+    case "4" :: Nil => byteMemorySimulation()
     case _ => displayUsage()
   }
 
@@ -14,7 +15,8 @@ object Main {
       """Select simulation to run:
         | [1] Half Adder
         | [2] Full Adder
-        | [3] Memory Cell
+        | [3] 1-Bit Memory
+        | [4] 1-Byte Memory
       """.stripMargin)
 
   private def halfAdderSimulation(): Unit = {
@@ -108,6 +110,35 @@ object Main {
     println("*** in: 0, set: 0 -> out: 1 ***")
     input.setSignal(false)
     setFlag.setSignal(false)
+    runSimulation()
+  }
+
+  private def byteMemorySimulation(): Unit = {
+    println("One byte memory simulation")
+
+    val inputBus, outputBus = new Bus
+    val setFlag = new Wire
+    byteMemory(inputBus, setFlag, outputBus)
+    probe("output bus", outputBus)
+
+    println("*** in: 8, setFlag: 1 -> out: 8")
+    inputBus.setSignal(8)
+    setFlag.setSignal(true)
+    runSimulation()
+
+    println("*** in: 0, setFlag: 0 -> out: 8")
+    inputBus.setSignal(0)
+    setFlag.setSignal(false)
+    runSimulation()
+
+    println("*** in: 120, setFlag: 0 -> out: 8")
+    inputBus.setSignal(120)
+    setFlag.setSignal(false)
+    runSimulation()
+
+    println("*** in: 120, setFlag: 1 -> out: 120")
+    inputBus.setSignal(120)
+    setFlag.setSignal(true)
     runSimulation()
   }
 }

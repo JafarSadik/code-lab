@@ -18,11 +18,16 @@ object Circuits extends Gates {
   }
 
   // 1 bit memory cell is capable of storing a single bit of information when set input is true
-  def memoryCell(input: Wire, set: Wire, output: Wire): Unit = {
+  def memoryCell(input: Wire, setFlag: Wire, output: Wire): Unit = {
     val a, b, c = new Wire
-    nandGate(input, set, a)
-    nandGate(a, set, b)
+    nandGate(input, setFlag, a)
+    nandGate(a, setFlag, b)
     nandGate(a, c, output)
     nandGate(output, b, c)
   }
+
+  def byteMemory(inputBus: Bus, setFlag: Wire, outputBus: Bus): Unit =
+    for (idx <- inputBus.wireIndices) {
+      memoryCell(inputBus.wires(idx), setFlag, outputBus.wires(idx))
+    }
 }

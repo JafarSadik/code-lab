@@ -1,5 +1,6 @@
 // Logic gates AND, OR, NOT, NAND
 trait Gates extends Simulation with Parameters {
+
   // Wires logical gates and circuits together
   class Wire {
     private var sigVal = false
@@ -22,10 +23,28 @@ trait Gates extends Simulation with Parameters {
       }
   }
 
+  // 8 bit bus wire
+  class Bus {
+    val wireIndices: Range = 0 until 8
+    val wires: Array[Wire] = wireIndices.map(_ => new Wire).toArray
+
+    def setSignal(signal: Byte): Unit =
+      for (idx <- wireIndices) wires(idx).setSignal(((signal >> idx) & 1) == 1)
+
+    def getSignal: Byte = {
+      var busSignal: Int = 0
+      for (idx <- wireIndices) {
+        val wireSignal = if (wires(idx).getSignal) 1 else 0
+        busSignal = busSignal | (wireSignal << idx)
+      }
+      busSignal.toByte
+    }
+  }
+
   // NOT gate
   def inverter(input: Wire, output: Wire): Unit = {
     def inverterAction(): Unit = {
-      val inputSignal = input.getSignal
+      lazy val inputSignal = input.getSignal
       afterDelay(InverterDelay) {
         output setSignal !inputSignal
       }
@@ -37,8 +56,8 @@ trait Gates extends Simulation with Parameters {
   // AND gate
   def andGate(input1: Wire, input2: Wire, output: Wire): Unit = {
     def andGateAction(): Unit = {
-      val signal1 = input1.getSignal
-      val signal2 = input2.getSignal
+      lazy val signal1 = input1.getSignal
+      lazy val signal2 = input2.getSignal
       afterDelay(AndGateDelay) {
         output setSignal signal1 & signal2
       }
@@ -51,8 +70,8 @@ trait Gates extends Simulation with Parameters {
   // NAND gate
   def nandGate(input1: Wire, input2: Wire, output: Wire): Unit = {
     def nandGateAction(): Unit = {
-      val signal1 = input1.getSignal
-      val signal2 = input2.getSignal
+      lazy val signal1 = input1.getSignal
+      lazy val signal2 = input2.getSignal
       afterDelay(AndGateDelay) {
         output setSignal !(signal1 & signal2)
       }
@@ -65,8 +84,8 @@ trait Gates extends Simulation with Parameters {
   // OR gate
   def orGate(input1: Wire, input2: Wire, output: Wire): Unit = {
     def orGateAction(): Unit = {
-      var signal1 = input1.getSignal
-      var signal2 = input2.getSignal
+      lazy val signal1 = input1.getSignal
+      lazy val signal2 = input2.getSignal
       afterDelay(OrGateDelay) {
         output setSignal signal1 | signal2
       }
@@ -83,5 +102,16 @@ trait Gates extends Simulation with Parameters {
     }
 
     wire addAction probeAction
+  }
+
+  // Bus probe
+  def probe(name: String, bus: Bus): Unit = {
+    def probeAction(): Unit = {
+      println(s"|$name| time: $currentTime signal: ${bus.getSignal}")
+    }
+
+    for (wire <- bus.wires) {
+      wire addAction probeAction
+    }
   }
 }
