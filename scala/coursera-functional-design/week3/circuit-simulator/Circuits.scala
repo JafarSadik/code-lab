@@ -26,8 +26,21 @@ object Circuits extends Gates {
     nandGate(output, b, c)
   }
 
+  // 8 bit memory built from eight 1-bit memory cells
   def byteMemory(inputBus: Bus, setFlag: Wire, outputBus: Bus): Unit =
     for (idx <- inputBus.wireIndices) {
       memoryCell(inputBus.wires(idx), setFlag, outputBus.wires(idx))
     }
+
+  // Byte adder allows to add 2 bytes together. Built from eight full adders.
+  def byteAdder(inputBus1: Bus, inputBus2: Bus, carryIn: Wire, outputBus: Bus, carryOut: Wire): Unit = {
+    def wire = new Wire
+    val overflows: List[Wire] = List(carryIn, wire, wire, wire, wire, wire, wire, wire, carryOut)
+
+    for (idx <- inputBus1.wireIndices) {
+      val cin = overflows(idx)
+      val cout = overflows(idx + 1)
+      fullAdder(inputBus1.wires(idx), inputBus2.wires(idx), cin, outputBus.wires(idx), cout)
+    }
+  }
 }

@@ -5,8 +5,9 @@ object Main {
   def main(args: Array[String]): Unit = args.toList match {
     case "1" :: Nil => halfAdderSimulation()
     case "2" :: Nil => fullAdderSimulation()
-    case "3" :: Nil => memoryCellSimulation()
-    case "4" :: Nil => byteMemorySimulation()
+    case "3" :: Nil => byteAdderSimulation()
+    case "4" :: Nil => memoryCellSimulation()
+    case "5" :: Nil => byteMemorySimulation()
     case _ => displayUsage()
   }
 
@@ -15,8 +16,9 @@ object Main {
       """Select simulation to run:
         | [1] Half Adder
         | [2] Full Adder
-        | [3] 1-Bit Memory
-        | [4] 1-Byte Memory
+        | [3] Byte Adder
+        | [4] 1-Bit Memory
+        | [5] 1-Byte Memory
       """.stripMargin)
 
   private def halfAdderSimulation(): Unit = {
@@ -25,7 +27,7 @@ object Main {
     val in1, in2, sum, carryOut = new Wire
     halfAdder(in1, in2, sum, carryOut)
     probe("sum", sum)
-    probe("carryOut", carryOut)
+    probe("overflow flag", carryOut)
 
     println("*** 1 + 1 = {sum: 0, carry: 1}***")
     in1.setSignal(true)
@@ -43,7 +45,7 @@ object Main {
 
     val in1, in2, sum, carryIn, carryOut = new Wire
     fullAdder(in1, in2, carryIn, sum, carryOut)
-    probe("carryOut", carryOut)
+    probe("overflow flag", carryOut)
     probe("sum", sum)
 
     println("*** 1 + 1, carry: 0 = {sum: 0, carry: 1} ***")
@@ -126,19 +128,56 @@ object Main {
     setFlag.setSignal(true)
     runSimulation()
 
-    println("*** in: 0, setFlag: 0 -> out: 8")
+    println("*** in: 0, setFlag: 0 -> out: 8 ***")
     inputBus.setSignal(0)
     setFlag.setSignal(false)
     runSimulation()
 
-    println("*** in: 120, setFlag: 0 -> out: 8")
+    println("*** in: 120, setFlag: 0 -> out: 8 ***")
     inputBus.setSignal(120)
     setFlag.setSignal(false)
     runSimulation()
 
-    println("*** in: 120, setFlag: 1 -> out: 120")
+    println("*** in: 120, setFlag: 1 -> out: 120 ***")
     inputBus.setSignal(120)
     setFlag.setSignal(true)
+    runSimulation()
+  }
+
+  private def byteAdderSimulation(): Unit = {
+    println("Byte adder simulation")
+
+    val inputBus1, inputBus2, outputBus = new Bus
+    val carryIn, carryOut = new Wire
+    byteAdder(inputBus1, inputBus2, carryIn, outputBus, carryOut)
+    probe("output bus", outputBus)
+    probe("overflow flag", carryOut)
+
+    println("*** 1 + 1 = 2 ***")
+    inputBus1.setSignal(1)
+    inputBus2.setSignal(1)
+    runSimulation()
+
+    println("*** 1 + 1, carry: 1 = 3 ***")
+    inputBus1.setSignal(1)
+    inputBus2.setSignal(1)
+    carryIn.setSignal(true)
+    runSimulation()
+
+    println("*** 17 + 103 = 120 ***")
+    inputBus1.setSignal(17)
+    inputBus2.setSignal(103)
+    carryIn.setSignal(false)
+    runSimulation()
+
+    println("*** 22 + 0 = 22 ***")
+    inputBus1.setSignal(22)
+    inputBus2.setSignal(0)
+    runSimulation()
+
+    println("*** 33 + 56 = 89 ***")
+    inputBus1.setSignal(33)
+    inputBus2.setSignal(56)
     runSimulation()
   }
 }

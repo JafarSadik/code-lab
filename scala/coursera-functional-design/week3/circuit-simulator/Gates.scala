@@ -41,66 +41,46 @@ trait Gates extends Simulation with Parameters {
     }
   }
 
-  // NOT gate
-  def inverter(input: Wire, output: Wire): Unit = {
-    def inverterAction(): Unit = {
-      lazy val inputSignal = input.getSignal
-      afterDelay(InverterDelay) {
-        output setSignal !inputSignal
+  // Allows to define any kind of unary gate
+  def unaryGate(input: Wire, output: Wire, gateDelay: Int)(f: (Boolean) => Boolean): Unit = {
+    def gateAction(): Unit = {
+      val signal = input.getSignal
+      afterDelay(gateDelay) {
+        output setSignal f(signal)
       }
     }
 
-    input addAction inverterAction
+    input addAction gateAction
   }
 
-  // AND gate
-  def andGate(input1: Wire, input2: Wire, output: Wire): Unit = {
-    def andGateAction(): Unit = {
-      lazy val signal1 = input1.getSignal
-      lazy val signal2 = input2.getSignal
-      afterDelay(AndGateDelay) {
-        output setSignal signal1 & signal2
+  // Allows to define any kind of binary gate
+  def binaryGate(input1: Wire, input2: Wire, output: Wire, gateDelay: Int)(f: (Boolean, Boolean) => Boolean): Unit = {
+    def gateAction(): Unit = {
+      val signal1 = input1.getSignal
+      val signal2 = input2.getSignal
+      afterDelay(gateDelay) {
+        output setSignal f(signal1, signal2)
       }
     }
 
-    input1 addAction andGateAction
-    input2 addAction andGateAction
+    input1 addAction gateAction
+    input2 addAction gateAction
   }
 
-  // NAND gate
-  def nandGate(input1: Wire, input2: Wire, output: Wire): Unit = {
-    def nandGateAction(): Unit = {
-      lazy val signal1 = input1.getSignal
-      lazy val signal2 = input2.getSignal
-      afterDelay(AndGateDelay) {
-        output setSignal !(signal1 & signal2)
-      }
-    }
+  // One unary (NOT) and three binary (AND, OR, NAND) gates
+  def inverter(input: Wire, output: Wire): Unit = unaryGate(input, output, InverterDelay)(!_)
 
-    input1 addAction nandGateAction
-    input2 addAction nandGateAction
-  }
+  def andGate(input1: Wire, input2: Wire, output: Wire): Unit = binaryGate(input1, input2, output, AndGateDelay)(_ & _)
 
-  // OR gate
-  def orGate(input1: Wire, input2: Wire, output: Wire): Unit = {
-    def orGateAction(): Unit = {
-      lazy val signal1 = input1.getSignal
-      lazy val signal2 = input2.getSignal
-      afterDelay(OrGateDelay) {
-        output setSignal signal1 | signal2
-      }
-    }
+  def orGate(input1: Wire, input2: Wire, output: Wire): Unit = binaryGate(input1, input2, output, OrGateDelay)(_ | _)
 
-    input1 addAction orGateAction
-    input2 addAction orGateAction
-  }
+  def nandGate(input1: Wire, input2: Wire, output: Wire): Unit = binaryGate(input1, input2, output, NandGateDelay)(!_ | !_)
 
   // Wire probe
   def probe(name: String, wire: Wire): Unit = {
     def probeAction(): Unit = {
       println(s"|$name| time: $currentTime value: ${wire.getSignal}")
     }
-
     wire addAction probeAction
   }
 
