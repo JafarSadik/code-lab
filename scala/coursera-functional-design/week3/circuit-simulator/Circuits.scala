@@ -1,5 +1,5 @@
 // Defines some basic logic circuits
-object Circuits extends Gates {
+object Circuits extends Gates with Probes {
   // Half adder sums two bits a and b. Result is a sum and bit carry flag
   def halfAdder(a: Wire, b: Wire, sum: Wire, carry: Wire): Unit = {
     val d, e = new Wire

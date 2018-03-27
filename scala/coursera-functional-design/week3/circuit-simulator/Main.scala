@@ -81,7 +81,7 @@ object Main {
 
     println("*** in: 0, set: 0 -> out: 0 ***")
     input.setSignal(false)
-    setFlag.setSignal(false)
+    setFlag.setSignal(true)
     runSimulation()
 
     println("*** in: 1, set: 0 -> out: 0 ***")
