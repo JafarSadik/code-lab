@@ -17,6 +17,18 @@ object Circuits extends Gates with Probes {
     orGate(c1, c2, carryOut)
   }
 
+  // Byte adder allows to add 2 bytes together. Built from eight full adders.
+  def byteAdder(inputBus1: Bus, inputBus2: Bus, carryIn: Wire, outputBus: Bus, carryOut: Wire): Unit = {
+    def wire = new Wire
+    val overflows: List[Wire] = List(carryIn, wire, wire, wire, wire, wire, wire, wire, carryOut)
+
+    for (idx <- inputBus1.wireIndices) {
+      val cin = overflows(idx)
+      val cout = overflows(idx + 1)
+      fullAdder(inputBus1.wires(idx), inputBus2.wires(idx), cin, outputBus.wires(idx), cout)
+    }
+  }
+
   // 1 bit memory cell is capable of storing a single bit of information when set input is true
   def memoryCell(input: Wire, setFlag: Wire, output: Wire): Unit = {
     val a, b, c = new Wire
@@ -31,16 +43,4 @@ object Circuits extends Gates with Probes {
     for (idx <- inputBus.wireIndices) {
       memoryCell(inputBus.wires(idx), setFlag, outputBus.wires(idx))
     }
-
-  // Byte adder allows to add 2 bytes together. Built from eight full adders.
-  def byteAdder(inputBus1: Bus, inputBus2: Bus, carryIn: Wire, outputBus: Bus, carryOut: Wire): Unit = {
-    def wire = new Wire
-    val overflows: List[Wire] = List(carryIn, wire, wire, wire, wire, wire, wire, wire, carryOut)
-
-    for (idx <- inputBus1.wireIndices) {
-      val cin = overflows(idx)
-      val cout = overflows(idx + 1)
-      fullAdder(inputBus1.wires(idx), inputBus2.wires(idx), cin, outputBus.wires(idx), cout)
-    }
-  }
 }
