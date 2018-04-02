@@ -11,17 +11,6 @@ object QuickCheckBinomialHeap extends QuickCheckHeap with BinomialHeap
 
 @RunWith(classOf[JUnitRunner])
 class QuickCheckSuite extends FunSuite with Checkers {
-  def checkBogus(p: Prop) {
-    var ok = false
-    try {
-      check(p)
-    } catch {
-      case e: TestFailedException =>
-        ok = true
-    }
-    assert(ok, "A bogus heap should NOT satisfy all properties. Try to find the bug!")
-  }
-
   test("Binomial heap satisfies properties.") {
     check(new QuickCheckHeap with quickcheck.test.BinomialHeap)
   }
@@ -44,5 +33,15 @@ class QuickCheckSuite extends FunSuite with Checkers {
 
   test("Bogus (5) binomial heap does not satisfy properties.") {
     checkBogus(new QuickCheckHeap with quickcheck.test.Bogus5BinomialHeap)
+  }
+
+  def checkBogus(p: Prop) {
+    var ok = false
+    try {
+      check(p)
+    } catch {
+      case e: TestFailedException => ok = true
+    }
+    assert(ok, "A bogus heap should NOT satisfy all properties. Try to find the bug!")
   }
 }
