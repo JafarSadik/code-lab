@@ -11,19 +11,15 @@ class Signal[T](expr: => T) {
   update(expr)
 
   protected def computeValue(): Unit = {
-    for (sig <- observed)
-      sig.observers -= this
+    for (sig <- observed) sig.observers -= this
+
     observed = Nil
+
     val newValue = caller.withValue(this)(myExpr())
-    /* Disable the following "optimization" for the assignment, because we
-     * want to be able to track the actual dependency graph in the tests.
-     */
-    //if (myValue != newValue) {
       myValue = newValue
       val obs = observers
       observers = Set()
       obs.foreach(_.computeValue())
-    //}
   }
 
   protected def update(expr: => T): Unit = {
@@ -31,7 +27,7 @@ class Signal[T](expr: => T) {
     computeValue()
   }
 
-  def apply() = {
+  def apply(): T = {
     observers += caller.value
     assert(!caller.value.observers.contains(this), "cyclic signal definition")
     caller.value.observed ::= this
@@ -48,7 +44,7 @@ object Var {
 }
 
 object NoSignal extends Signal[Nothing](???) {
-  override def computeValue() = ()
+  override def computeValue(): Unit = ()
 }
 
 object Signal {

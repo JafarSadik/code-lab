@@ -18,12 +18,9 @@ object CalculatorUI {
   }
 
   // Helpers
+  def elementById[A <: js.Any](id: String): A = document.getElementById(id).asInstanceOf[A]
 
-  def elementById[A <: js.Any](id: String): A =
-    document.getElementById(id).asInstanceOf[A]
-
-  def elementValueSignal(element: html.Element,
-      getValue: () => String): Signal[String] = {
+  def elementValueSignal(element: html.Element, getValue: () => String): Signal[String] = {
     var prevVal = getValue()
     val value = new Var(prevVal)
     val onChange = { (event: dom.Event) =>
@@ -40,16 +37,14 @@ object CalculatorUI {
     value
   }
 
-  def inputValueSignal(input: html.Input): Signal[String] =
-    elementValueSignal(input, () => input.value)
+  def inputValueSignal(input: html.Input): Signal[String] = elementValueSignal(input, () => input.value)
 
   def textAreaValueSignal(textAreaID: String): Signal[String] = {
     val textArea = elementById[html.TextArea](textAreaID)
     elementValueSignal(textArea, () => textArea.value)
   }
 
-  private lazy val ClearCssClassRegExp =
-    new js.RegExp(raw"""(?:^|\s)has-error(?!\S)""", "g")
+  private lazy val ClearCssClassRegExp = new js.RegExp(raw"""(?:^|\s)has-error(?!\S)""", "g")
 
   def doubleValueOfInput(input: html.Input): Signal[Double] = {
     val text = inputValueSignal(input)
@@ -68,11 +63,9 @@ object CalculatorUI {
   }
 
   // TWEET LENGTH
-
   def setupTweetMeasurer(): Unit = {
     val tweetText = textAreaValueSignal("tweettext")
-    val remainingCharsArea =
-      document.getElementById("tweetremainingchars").asInstanceOf[html.Span]
+    val remainingCharsArea = document.getElementById("tweetremainingchars").asInstanceOf[html.Span]
 
     val remainingCount = TweetLength.tweetRemainingCharsCount(tweetText)
     Signal {
@@ -86,7 +79,6 @@ object CalculatorUI {
   }
 
   // 2ND ORDER POLYNOMIAL
-
   def setup2ndOrderPolynomial(): Unit = {
     val ids = List("polyroota", "polyrootb", "polyrootc")
     val inputs = ids.map(id => elementById[html.Input](id))
@@ -107,17 +99,14 @@ object CalculatorUI {
   }
 
   // CALCULATOR
-
   def setupCalculator(): Unit = {
     val names = (0 until 10).map(i => ('a' + i).toChar.toString)
 
     val inputs = names.map(name => elementById[html.Input]("calculatorexpr" + name))
     val exprs = inputs.map(exprOfInput)
-
     val namedExpressions = names.zip(exprs).toMap
 
     val namedValues = Calculator.computeValues(namedExpressions)
-
     assert(namedValues.keySet == namedExpressions.keySet)
 
     for ((name, valueSignal) <- namedValues) {
