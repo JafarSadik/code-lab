@@ -1,4 +1,4 @@
-package dsl
+package shared
 
 import org.junit.jupiter.api.Test
 
@@ -28,17 +28,17 @@ class RobotTest {
     @Test
     void "Generated clone method test"() {
         def robot = new Robot(x: 100, y: 100)
-        def robotClone = robot.clone()
+        def cloned = robot.clone()
 
         // A clone should be equal to the original instance
-        assertEquals(robot, robotClone)
+        assertEquals(robot, cloned)
 
         // But those are two different instances
-        assertNotSame(robot, robotClone)
+        assertNotSame(robot, cloned)
 
         // And therefore changing the clone shouldn't affect the original instance
-        robotClone.moveTo 0, 0
-        assertTrue(robotClone.x == 0 && robotClone.y == 0)
+        cloned.setLocation(0, 0)
+        assertTrue(cloned.x == 0 && cloned.y == 0)
         assertTrue(robot.x == 100 && robot.y == 100)
     }
 }

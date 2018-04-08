@@ -1,30 +1,16 @@
 package dsl
 
-import org.codehaus.groovy.control.CompilerConfiguration
+import dsl.executors.DSLExecutors
+import dsl.syntax.Assertions
+import dsl.syntax.BasicCommands
+import dsl.syntax.ControlStructures
+import shared.Robot
 
-class RobotDSL {
-    @Lazy
-    private def shell = new GroovyShell(withDelegatingScript())
-    private def robot = new Robot()
+class RobotDSL implements DSLExecutors, BasicCommands, ControlStructures, Assertions {
+    @Delegate
+    final Robot robot;
 
-    RobotDSL execute(Closure dslClosure) {
-        dslClosure.delegate = robot
-        dslClosure()
-        this
-    }
-
-    RobotDSL execute(String source) {
-        def script = shell.parse(source)
-        script.setDelegate(robot)
-        script.run()
-        this
-    }
-
-    Robot getRobot() {
-        return robot.clone()
-    }
-
-    private static CompilerConfiguration withDelegatingScript() {
-        new CompilerConfiguration(scriptBaseClass: DelegatingScript.class.name)
+    RobotDSL(Robot robot) {
+        this.robot = robot
     }
 }
