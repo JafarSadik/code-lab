@@ -1,4 +1,4 @@
-package shared
+package domain
 
 import groovy.transform.AutoClone
 import groovy.transform.Canonical

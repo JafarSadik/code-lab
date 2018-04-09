@@ -1,13 +1,16 @@
 package dsl
 
+import domain.Robot
 import org.junit.jupiter.api.Test
-import shared.Robot
 
 import static org.junit.jupiter.api.Assertions.assertEquals
 
-class ControlStructuresTest extends RobotDSLTest {
+class ControlStructuresTest {
+    final def robot = new Robot()
+    final def robotDSL = new RobotDSL(robot)
+
     @Test
-    void "Control structure 'times' expected to execute the provided closure N-times"() {
+    void "control structure 'times' expected to execute the provided closure N-times"() {
         robotDSL.execute """
             moveTo 0, 0
             times(10) {

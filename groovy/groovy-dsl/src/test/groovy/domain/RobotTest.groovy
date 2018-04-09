@@ -1,4 +1,4 @@
-package shared
+package domain
 
 import org.junit.jupiter.api.Test
 
@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*
 
 class RobotTest {
     @Test
-    void "Generated hashCode method test"() {
+    void "test hashCode"() {
         // Expect the same hash code for two different instances sharing instance variables
         assertEquals(new Robot(x: 100, y: 115).hashCode(), new Robot(x: 100, y: 115).hashCode())
         assertEquals(new Robot(x: 0, y: 0).hashCode(), new Robot(x: 0, y: 0).hashCode())
@@ -16,7 +16,7 @@ class RobotTest {
     }
 
     @Test
-    void "Generated equals method test"() {
+    void "test equals"() {
         // Expect two different instances to be equal if they share the same instance variables
         assertEquals(new Robot(x: 100, y: 115), new Robot(x: 100, y: 115))
         assertEquals(new Robot(x: 0, y: 0), new Robot(x: 0, y: 0))
@@ -26,7 +26,7 @@ class RobotTest {
     }
 
     @Test
-    void "Generated clone method test"() {
+    void "test clone"() {
         def robot = new Robot(x: 100, y: 100)
         def cloned = robot.clone()
 

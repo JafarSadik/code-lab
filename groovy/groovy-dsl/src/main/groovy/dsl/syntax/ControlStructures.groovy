@@ -1,11 +1,10 @@
 package dsl.syntax
 
-import dsl.HasRobot
-
-trait ControlStructures implements HasRobot {
-    def times(int n, Closure closure) {
+trait ControlStructures implements Syntax {
+    Syntax times(int n, Closure<Syntax> closure) {
         n.times {
             closure()
         }
+        this
     }
 }

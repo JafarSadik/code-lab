@@ -1,5 +1,5 @@
+import domain.Robot
 import dsl.RobotDSL
-import shared.Robot
 
 class Main {
     static void main(String[] args) {

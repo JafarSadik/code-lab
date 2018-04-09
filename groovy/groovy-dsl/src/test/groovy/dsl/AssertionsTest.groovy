@@ -1,20 +1,21 @@
 package dsl
 
+import domain.Robot
 import org.junit.jupiter.api.Test
 
 import static org.junit.jupiter.api.Assertions.assertThrows
 
-class AssertionsTest extends RobotDSLTest {
+class AssertionsTest {
+    final def robotDSL = new RobotDSL(new Robot())
+
     @Test
-    void "Location assertion should throw AssertionError when condition not met"() {
-        // First check a positive case that should pass without errors
+    void "assertLocation should fail only when condition not met"() {
         robotDSL.execute {
             moveTo 0, 0
             moveRight 10
             assertLocation 10, 0
         }
 
-        // Now make sure that a proper error is thrown when assertion fails
         assertThrows(AssertionError.class, {
             robotDSL.execute {
                 moveDown 10

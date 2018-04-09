@@ -1,9 +1,8 @@
 package dsl.syntax
 
-import dsl.HasRobot
-
-trait Assertions implements HasRobot {
-    def assertLocation(int x, int y) {
+trait Assertions implements Syntax {
+    Syntax assertLocation(int x, int y) throws AssertionError {
         assert x == robot.x && y == robot.y
+        this
     }
 }
