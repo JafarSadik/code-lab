@@ -4,7 +4,7 @@ import domain.Robot
 import dsl.syntax.Assertions
 import dsl.syntax.Commands
 import dsl.syntax.ControlStructures
-import dsl.syntax.sugar.SyntacticSugar
+import dsl.syntax.SyntacticSugar
 import org.codehaus.groovy.control.CompilerConfiguration
 
 class RobotDSL implements Commands, ControlStructures, Assertions, SyntacticSugar {

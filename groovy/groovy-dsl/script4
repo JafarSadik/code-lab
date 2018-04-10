@@ -1,0 +1,12 @@
+def robotAt = {println "robot at ($x, $y)"}
+moveTo 0, 0;                robotAt()
+def step = 1
+
+whileIn (circle(x = 0, y = 0, r = 100)) {
+    moveRight step;         robotAt()
+    moveDown step;          robotAt()
+    moveLeft step + 1;      robotAt()
+    moveUp step + 1;        robotAt()
+    step += 2
+}
+
