@@ -1,6 +1,6 @@
 package dsl.syntax.sugar
 
-import dsl.syntax.Syntax
+import dsl.syntax.Context
 
 trait And {
     def and = this
@@ -9,11 +9,11 @@ trait And {
         this
     }
 
-    Syntax and(Syntax expr) {
+    Context and(Context expr) {
         expr
     }
 
-    Syntax and(Closure<Syntax> closure) {
+    Context and(Closure<Context> closure) {
         closure()
     }
 }

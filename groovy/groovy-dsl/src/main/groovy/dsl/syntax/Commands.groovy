@@ -1,28 +1,28 @@
 package dsl.syntax
 
-trait Commands implements Syntax {
-    Syntax moveTo(int x, int y) {
+trait Commands implements Context {
+    Context moveTo(int x, int y) {
         robot.x = x
         robot.y = y
         this
     }
 
-    Syntax moveUp(int distance) {
+    Context moveUp(int distance) {
         robot.y -= distance
         this
     }
 
-    Syntax moveDown(int distance) {
+    Context moveDown(int distance) {
         robot.y += distance
         this
     }
 
-    Syntax moveLeft(int distance) {
+    Context moveLeft(int distance) {
         robot.x -= distance
         this
     }
 
-    Syntax moveRight(int distance) {
+    Context moveRight(int distance) {
         robot.x += distance
         this
     }

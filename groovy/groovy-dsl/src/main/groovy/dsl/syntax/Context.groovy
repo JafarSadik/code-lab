@@ -2,6 +2,6 @@ package dsl.syntax
 
 import domain.Robot
 
-interface Syntax {
+interface Context {
     Robot getRobot()
 }

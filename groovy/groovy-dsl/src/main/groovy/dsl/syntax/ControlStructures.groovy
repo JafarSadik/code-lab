@@ -1,16 +1,16 @@
 package dsl.syntax
 
-import dsl.syntax.shapes.Shape
+import dsl.syntax.shapes.ShapePredicate
 
-trait ControlStructures implements Syntax {
-    Syntax times(int n, Closure<Syntax> closure) {
+trait ControlStructures implements Context {
+    Context times(int n, Closure<Context> closure) {
         n.times {
             closure()
         }
         this
     }
 
-    Syntax whileIn(Shape shape, Closure<Syntax> closure) {
+    Context whileIn(ShapePredicate shape, Closure<Context> closure) {
         while (shape.test(robot)) {
             closure()
         }

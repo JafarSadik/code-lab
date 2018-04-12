@@ -1,6 +1,6 @@
 package dsl.syntax.sugar
 
-import dsl.syntax.Syntax
+import dsl.syntax.Context
 
 trait Then {
     def then = this
@@ -9,11 +9,11 @@ trait Then {
         this
     }
 
-    Syntax then(Syntax expr) {
+    Context then(Context expr) {
         expr
     }
 
-    Syntax then(Closure<Syntax> closure) {
+    Context then(Closure<Context> closure) {
         closure()
     }
 }
