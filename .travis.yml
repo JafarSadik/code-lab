@@ -1,0 +1,7 @@
+# Deploy all graphics experiments to surge.sh
+dist: trusty
+
+deploy:
+    - provider: surge
+      project: ./graphics/deploy/
+      domain: graphics.codelab.surge.sh
