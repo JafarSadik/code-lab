@@ -1,4 +1,5 @@
 # Deploy all graphics experiments to surge.sh
+language: generic
 dist: trusty
 
 deploy:
