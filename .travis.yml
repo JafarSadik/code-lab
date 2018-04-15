@@ -1,6 +1,19 @@
 # Deploy all graphics experiments to surge.sh
-language: generic
+language: node_js
+node_js: "9.10.1"
+
 dist: trusty
+
+cache:
+  directories:
+    - "graphics/node_modules"
+
+install:
+  - cd graphics
+  - npm install
+
+script:
+  - npm run build
 
 deploy:
     - provider: surge
