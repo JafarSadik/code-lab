@@ -1,8 +1,5 @@
 {
   "name": "graphics",
-  "version": "1.0.0",
-  "description": "graphics experiments",
-  "author": "Jafar Sadik",
   "scripts": {
     "clean": "rimraf deploy",
     "build:js": "babel **/*.js -d deploy --ignore node_modules",
