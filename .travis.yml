@@ -4,7 +4,7 @@ node_js: "9.10.1"
 
 install: cd graphics & npm install
 
-script: npm run build
+script:  cd graphics & npm run build
 
 deploy:
   provider: surge
