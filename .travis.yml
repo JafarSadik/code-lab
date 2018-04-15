@@ -16,6 +16,7 @@ script:
   - npm run build
 
 deploy:
-    - provider: surge
-      project: ./graphics/deploy/
-      domain: graphics.codelab.surge.sh
+  provider: surge
+  skip_cleanup: true
+  project: ./graphics/deploy/
+  domain: graphics.codelab.surge.sh
