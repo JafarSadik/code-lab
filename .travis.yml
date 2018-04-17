@@ -10,7 +10,7 @@ script:
   - npm run build
 
 before_deploy:
-  - rm -fr deploy
+  - cd $TRAVIS_BUILD_DIR
   - mkdir -p deploy/graphics
   - cp -r graphics/build/* deploy/graphics
 
