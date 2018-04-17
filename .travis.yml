@@ -2,11 +2,14 @@
 language: node_js
 node_js: "9.10.1"
 
-before_install: cd graphics
+install:
+  - cd graphics
+  - npm install
 
-script: npm run build
+script:
+  - npm run build
 
-after_script:
+before_deploy:
   - rm -fr deploy
   - mkdir -p deploy/graphics
   - cp -r graphics/build/* deploy/graphics
