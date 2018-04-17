@@ -1,9 +1,9 @@
 {
   "name": "graphics",
   "scripts": {
-    "clean": "rimraf deploy",
-    "build:js": "babel **/*.js -d deploy --ignore node_modules",
-    "copy:html": "copyfiles **/*.html deploy",
+    "clean": "rimraf build",
+    "build:js": "babel **/*.js -d build --ignore node_modules",
+    "copy:html": "copyfiles **/*.html build",
     "build": "npm-run-all clean build:* copy:*"
   },
   "devDependencies": {

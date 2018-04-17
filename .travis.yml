@@ -6,8 +6,13 @@ before_install: cd graphics
 
 script: npm run build
 
+after_script:
+  - rm -fr deploy
+  - mkdir -p deploy/graphics
+  - cp -r graphics/build/* deploy/graphics
+
 deploy:
   provider: surge
   skip_cleanup: true
-  project: ./graphics/deploy/
-  domain: graphics.codelab.surge.sh
+  project: ./deploy
+  domain: codelab.surge.sh
