@@ -1,5 +1,5 @@
 (
     (out) => {
-        out.log("script loaded");
+        out.log("script loaded :]");
     }
 )(console);

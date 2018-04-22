@@ -4,7 +4,15 @@
     "clean": "rimraf build",
     "build:js": "babel **/*.js -d build --ignore node_modules",
     "copy:html": "copyfiles **/*.html build",
-    "build": "npm-run-all clean build:* copy:*"
+    "copy:css": "copyfiles **/*.css  build",
+    "copy:img": "copyfiles **/*.gif **/*.jpg **/*.png build",
+    "prebuild": "npm run clean",
+    "build": "run-p build:*",
+    "postbuild": "run-p copy:*",
+    "watch": "run-p watch:*",
+    "watch:js": "onchange **/*.js -e build/** -- npm run build:js",
+    "watch:html": "onchange **/*.html -e build/** -- npm run copy:html",
+    "watch:css": "onchange **/*.css -e build/** -- npm run copy:css"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -14,6 +22,7 @@
     "babel-preset-stage-2": "^6.24.1",
     "copyfiles": "^2.0.0",
     "npm-run-all": "^4.1.2",
-    "rimraf": "^2.5.4"
+    "rimraf": "^2.5.4",
+    "onchange": "^3.3.0"
   }
 }
