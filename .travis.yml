@@ -2,11 +2,15 @@
 language: node_js
 node_js: "9.10.1"
 
-install: cd graphics && npm install
+install:
+  - cd graphics
+  - npm install
 
-script: npm run build --prefix graphics
+script:
+  - npm run build
 
 before_deploy:
+  - cd $TRAVIS_BUILD_DIR
   - mkdir -p deploy/graphics
   - cp -r graphics/build/* deploy/graphics
 
