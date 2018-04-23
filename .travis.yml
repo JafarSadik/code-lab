@@ -19,3 +19,7 @@ deploy:
   skip_cleanup: true
   project: ./deploy
   domain: codelab.surge.sh
+
+cache:
+  directories:
+    - graphics/node_modules
