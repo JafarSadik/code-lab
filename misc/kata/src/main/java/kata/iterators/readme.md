@@ -4,7 +4,7 @@ Implement an `Iterator` that allows traversal through `Comparable` items in mult
 First element to pick should be the lowest element in any of the iterators, after that the second lowest elements in any 
 of the iterators and so on until we iterate through all the elements of the iterators. 
 
-Let’s say we have got the following iterators holding values:
+Let’s say we have got the following iterators:
 
 ```
 Iterator 1: [1, 4, 6, 7]
