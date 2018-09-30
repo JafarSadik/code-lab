@@ -1,4 +1,4 @@
-### Iterator of iterators
+## Iterator of iterators
 
 Implement an `Iterator` that allows traversal through `Comparable` items in multiple wrapped iterators. 
 First element to pick should be the lowest element in any of the iterators, after that the second lowest elements in any 

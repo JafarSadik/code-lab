@@ -1,4 +1,4 @@
-# Roman Numerals
+## Roman Numerals
 
 The Romans wrote their numbers using letters; 
 specifically the letters 
@@ -18,7 +18,7 @@ There were certain rules that the numerals followed which should be observed:
 * Only one subtraction can be made per numeral ('XC' is allowed, 'XXC' is not). 
 * The '5' symbols ('V', 'L', and 'D') can never be subtracted.
 
-# Examples
+## Examples
 
 Roman Numeral | Value 
 ------------- | ----- 
