@@ -18,7 +18,7 @@ enum RomanSymbol {
         return decimal;
     }
 
-    public static RomanSymbol romanSymbol(char symbol) {
+    public static RomanSymbol of(char symbol) {
         return valueOf(String.valueOf(symbol));
     }
 

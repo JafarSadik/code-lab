@@ -2,8 +2,6 @@ package kata.roman;
 
 import java.util.regex.Pattern;
 
-import static kata.roman.RomanSymbol.romanSymbol;
-
 /**
  * Roman numeral converter
  */
@@ -12,13 +10,14 @@ public class RomanNumeralConverter {
             "^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$");
 
     public int convert(String romanNumeral) {
+        romanNumeral = romanNumeral.toUpperCase();
         ensureValidRomanNumeral(romanNumeral);
 
         int sum = 0, previousValue = 0;
-        romanNumeral = romanNumeral.toUpperCase();
+
 
         for (int index = romanNumeral.length() - 1; index >= 0; index--) {
-            int value = romanSymbol(romanNumeral.charAt(index)).toDecimal();
+            int value = RomanSymbol.of(romanNumeral.charAt(index)).toDecimal();
 
             if (value >= previousValue) sum += value;
             else sum -= value;
@@ -29,7 +28,6 @@ public class RomanNumeralConverter {
     }
 
     private boolean isValidRomanNumeral(String romanNumeral) {
-        romanNumeral = romanNumeral.toUpperCase();
         return romanNumeral.trim().length() > 0 &&
                 validRomanNumeralRegex.matcher(romanNumeral).matches();
     }
