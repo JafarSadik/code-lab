@@ -15,7 +15,6 @@ public class RomanNumeralConverter {
 
         int sum = 0, previousValue = 0;
 
-
         for (int index = romanNumeral.length() - 1; index >= 0; index--) {
             int value = RomanSymbol.of(romanNumeral.charAt(index)).toDecimal();
 
