@@ -8,14 +8,15 @@ import java.util.stream.Stream;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * A wrapper around Integer iterators. Allows ascending traversal through items in multiple iterators.
- * The class is not thread-safe.
+ * A wrapper that allows traversal through items in multiple iterators.
  */
 public class CompositeIterator<T extends Comparable<T>> implements Iterator<T> {
     // A priority queue maintains elements in an ascending order.
     private final PriorityQueue<IteratorElement> priorityQueue;
+
     // Allows to remove the current element and holds the next element for priority queue.
     private Iterator<T> iterator = emptyIterator();
+
     // Recent value returned by the iterator.
     private T currentValue;
 
@@ -101,7 +102,7 @@ public class CompositeIterator<T extends Comparable<T>> implements Iterator<T> {
     }
 
     private boolean allNonNullIterators(Iterator<T>[] iterators) {
-        return Stream.of(iterators).filter(Objects::isNull).count() == 0;
+        return Stream.of(iterators).noneMatch(Objects::isNull);
     }
 
     private Iterator<T> emptyIterator() {
