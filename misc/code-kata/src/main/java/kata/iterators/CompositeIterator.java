@@ -1,29 +1,26 @@
 package kata.iterators;
 
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * An {@link Iterator} that allows traversal through {@link Comparable} items of multiple wrapped iterators.
+ * An {@link Iterator} that allows ordered traversal through {@link Comparable} items of multiple wrapped iterators.
+ * The input iterators are not pooled until necessary.
  */
 public class CompositeIterator<T extends Comparable<T>> implements Iterator<T> {
-    // A priority queue maintains elements in an ascending order.
-    private final PriorityQueue<CompositeIteratorElement<T>> priorityQueue;
+    // A priority queue maintains iterators in an ascending order.
+    private final PriorityQueue<ComparableIterator<T>> priorityQueue;
 
-    // Allows to remove the current element and holds the next element for priority queue.
-    private Iterator<T> iterator = emptyIterator();
-
-    // Recent value returned by the iterator.
-    private T currentValue;
+    // Iterator that holds the next value in order
+    private ComparableIterator<T> iterator = emptyIterator();
 
     @SafeVarargs
     public CompositeIterator(Iterator<T>... iterators) {
         requireValidParameterList(iterators);
-        priorityQueue = new PriorityQueue<>(firstElementFromEachIterator(iterators));
+        priorityQueue = new PriorityQueue<>(wrap(iterators));
     }
 
     /**
@@ -42,12 +39,12 @@ public class CompositeIterator<T extends Comparable<T>> implements Iterator<T> {
      */
     @Override
     public T next() {
-        enqueueAvailableElement();
-        CompositeIteratorElement<T> next = getNextElementInOrder();
-        ensureIteratorsSortedWithoutDuplicates(currentValue, next.value);
-        iterator = next.iterator;
-        currentValue = next.value;
-        return currentValue;
+        T previousValue = iterator.currentValue();
+        enqueueNextNonEmptyIterator();
+        iterator = dequeueIteratorInOrder();
+        failWhenResultIndicatesEmptyIterator(iterator);
+        ensureIteratorsSortedWithoutDuplicates(previousValue, iterator.currentValue());
+        return iterator.currentValue();
     }
 
     /**
@@ -60,40 +57,34 @@ public class CompositeIterator<T extends Comparable<T>> implements Iterator<T> {
         iterator.remove();
     }
 
-    private void enqueueAvailableElement() {
+    private void enqueueNextNonEmptyIterator() {
         if (iterator.hasNext()) {
-            priorityQueue.add(new CompositeIteratorElement<T>(iterator));
+            priorityQueue.add(iterator.next());
         }
     }
 
-    private CompositeIteratorElement<T> getNextElementInOrder() {
-        CompositeIteratorElement<T> element = priorityQueue.poll();
-        failWhenResultIndicatesEmptyIterator(element);
-        return element;
+    private ComparableIterator<T> dequeueIteratorInOrder() {
+        return priorityQueue.poll();
     }
 
-    private void failWhenResultIndicatesEmptyIterator(CompositeIteratorElement e) {
+    private void failWhenResultIndicatesEmptyIterator(ComparableIterator e) {
         if (e == null) {
-            throw new NoSuchElementException("empty iterator");
+            throw new NoSuchElementException("iterator is empty");
         }
     }
 
-    private void ensureIteratorsSortedWithoutDuplicates(T currentValue, T nextValue) {
-        if (currentValue != null) {
-            checkArgument(currentValue.compareTo(nextValue) < 0, "at least one iterator not sorted");
-            checkArgument(currentValue.compareTo(nextValue) != 0, "duplicate items in one or more iterators");
+    private void ensureIteratorsSortedWithoutDuplicates(T previousValue, T currentValue) {
+        if (previousValue != null) {
+            checkArgument(previousValue.compareTo(currentValue) < 0, "at least one iterator not sorted");
+            checkArgument(previousValue.compareTo(currentValue) != 0, "duplicate items in one or more iterators");
         }
     }
 
-    private List<CompositeIteratorElement<T>> firstElementFromEachIterator(Iterator<T>[] iterators) {
+    private List<ComparableIterator<T>> wrap(Iterator<T>[] iterators) {
         return Stream.of(iterators)
-                .filter(nonEmptyIterators())
-                .map(CompositeIteratorElement::new)
+                .filter(Iterator::hasNext)
+                .map(ComparableIterator::new)
                 .collect(Collectors.toList());
-    }
-
-    private Predicate<Iterator<T>> nonEmptyIterators() {
-        return Iterator::hasNext;
     }
 
     private void requireValidParameterList(Iterator<T>[] iterators) {
@@ -105,7 +96,7 @@ public class CompositeIterator<T extends Comparable<T>> implements Iterator<T> {
         return Stream.of(iterators).noneMatch(Objects::isNull);
     }
 
-    private Iterator<T> emptyIterator() {
-        return new ArrayList<T>().iterator();
+    private ComparableIterator<T> emptyIterator() {
+        return new ComparableIterator<>(new ArrayList<T>().iterator());
     }
 }

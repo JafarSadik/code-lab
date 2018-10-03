@@ -23,12 +23,8 @@ public class RomanNumeralConverter {
 
             previousValue = value;
         }
-        return sum;
-    }
 
-    private boolean isValidRomanNumeral(String romanNumeral) {
-        return romanNumeral.trim().length() > 0 &&
-                validRomanNumeralRegex.matcher(romanNumeral).matches();
+        return sum;
     }
 
     private void ensureValidRomanNumeral(String romanNumeral) {
@@ -36,4 +32,10 @@ public class RomanNumeralConverter {
             throw new NumberFormatException("Not a valid roman numeral: " + romanNumeral);
         }
     }
+
+    private boolean isValidRomanNumeral(String romanNumeral) {
+        return romanNumeral.trim().length() > 0 &&
+                validRomanNumeralRegex.matcher(romanNumeral).matches();
+    }
+
 }
