@@ -1,0 +1,20 @@
+{
+  "name": "es6-plus",
+  "version": "1.0.0",
+  "scripts": {
+    "clean": "rimraf dist/*",
+    "build": "babel ./*.js -d ./dist"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.0.20",
+    "babel-preset-latest": "^6.24.1",
+    "rimraf": "^2.6.2"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "assert": "^1.4.1",
+    "express": "^4.16.3",
+    "request": "^2.88.0"
+  }
+}
