@@ -9,6 +9,7 @@ target/
 build/
 classes/
 out/
+dist/
 .gradle/
 
 # sbt
