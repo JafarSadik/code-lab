@@ -5,7 +5,7 @@
     "clean": "rimraf build dist",
     "build": "babel ./src -d ./build",
     "package": "mkdirp dist && run-s build package:*",
-    "package:1": "node package.js request-http-client"
+    "package:1": "node package.js es7+ request-http-client"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
