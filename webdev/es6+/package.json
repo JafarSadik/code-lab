@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "clean": "rimraf build dist",
-    "build": "babel ./src -d ./build",
+    "build": "babel *.js -d ./build",
     "package": "mkdirp dist && run-s build package:*",
     "package:1": "node package.js es7+ request-http-client"
   },
