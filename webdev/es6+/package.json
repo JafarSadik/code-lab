@@ -4,8 +4,8 @@
   "scripts": {
     "clean": "rimraf build dist",
     "build": "babel *.js -d ./build",
-    "package": "mkdirp dist && run-s build package:*",
-    "package:1": "node package.js es7+ request-http-client express es6-basics http-server"
+    "package": "mkdirp dist && run-s build package:all",
+    "package:all": "node package-all.js"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
