@@ -1,5 +1,13 @@
+// Importing node modules installed in node_modules directory
 import "@babel/polyfill"
 import {notEqual, deepEqual, equal, ok} from "assert"
+
+// Importing custom modules requires relative paths such as ./lib, ../lib or ../../lib
+import * as messages from "./lib/messages"
+import {mult, pi} from "./lib/math";
+import {log} from "./lib/utils"
+equal('2π = 6.283184', `2π = ${mult(2, pi)}`);
+ok(messages.wrongPassword !== undefined && messages.requiresAdminRole !== undefined);
 
 // Let is similar to var but is only accessible in the block level where it is defined
 let a = 50;
@@ -20,13 +28,13 @@ languages.push('python');
 
 // Arrow function has a shorten syntax than a function expression and can refer to `this` value of the enclosing context
 [
-    () => console.log('function 1'),
-    () => console.log('function 2'),
-    () => console.log('function 3')
+    () => log('function 1'),
+    () => log('function 2'),
+    () => log('function 3')
 ].forEach(fn => fn());
 
 let adder = (a, b) => a + b;
-console.log(`2 + 3 = ${adder(2, 3)}`);
+log(`2 + 3 = ${adder(2, 3)}`);
 
 deepEqual([2, 4, 6, 8, 10], [1, 2, 3, 4, 5].map((v) => v * 2));
 
@@ -48,9 +56,9 @@ function getRole() {
     return 'a software developer';
 }
 
-console.log(`${user} <${email}> is ${getRole()}`);
+log(`${user} <${email}> is ${getRole()}`);
 
-console.log(`
+log(`
        1
      2 1 2
     5 3 3 5
@@ -60,17 +68,17 @@ console.log(`
 function sum(first = 0, ...numbers) {
     return first + numbers.reduce((acc, val) => acc + val, 0);
 }
-console.log(`sum(1,2,3) = ${sum()}`);
-console.log(`sum(1,2,3) = ${sum(1,2,3)}`);
+log(`sum(1,2,3) = ${sum()}`);
+log(`sum(1,2,3) = ${sum(1,2,3)}`);
 
 // Spread operator converts an iterable collection into parameter list
 const numbers = [1, 2, 3, 4, 5, 6, 7];
-console.log(`max(numbers) = ${Math.max(...numbers)}`);
+log(`max(numbers) = ${Math.max(...numbers)}`);
 
 // Property shorthand
 var x = 15, y = 14;
 let pos = {x, y};  // instead of {x: x, y: y}
-console.log('pos', pos);
+log('pos', pos);
 
 // The destructing assignment syntax is JS expression that makes it possible to unpack values from arrays or object into distinct variables.
 // Array decomposition with destructing assignment
@@ -80,7 +88,7 @@ var [v1, ...rest] = [11, 12, 13]; // with extended arguments list
 
 // Object decomposition with destructing assignment
 var {op, lhs, rhs} = {'op': '*', 'lhs': 15, 'rhs': 100};
-console.log(`${lhs} ${op} ${rhs}`);
+log(`${lhs} ${op} ${rhs}`);
 
 // Deep object decomposition with destructing assignment
 var {op: op1, lhs: {op: op2}} = {'op': '*', 'lhs': {'op': '+', 'lhs': 1, 'rhs': 2}, 'rhs': 100};
@@ -101,4 +109,4 @@ const logLevels = {
     WARN: Symbol('warn')
 };
 
-console.log(logLevels.INFO, 'info message');
+log(logLevels.INFO, 'info message');

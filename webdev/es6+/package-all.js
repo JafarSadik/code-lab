@@ -3,9 +3,9 @@ const shell = require('shelljs');
 const fileSystem = require('fs');
 
 const jsFiles = (file) => file.endsWith('.js') && file !== 'package-all.js';
-const currentDir = process.cwd();
+const baseDir = process.cwd();
 
-fileSystem.readdirSync(currentDir).filter(jsFiles).forEach(bundle);
+fileSystem.readdirSync(baseDir).filter(jsFiles).forEach(bundle);
 
 function bundle(jsFile) {
     let minJsFile = jsFile.replace('.js', '.min.js');

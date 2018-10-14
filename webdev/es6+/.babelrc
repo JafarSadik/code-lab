@@ -1,4 +1,3 @@
 {
-  "presets": ["latest"],
-  "ignore": ["package.js"]
+  "presets": ["latest"]
 }
