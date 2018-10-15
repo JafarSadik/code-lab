@@ -36,7 +36,7 @@ languages.push('python');
 ].forEach(fn => fn());
 
 let adder = (a, b) => a + b;
-log(`2 + 3 = ${adder(2, 3)}`);
+equal('2 + 3 = 5', `2 + 3 = ${adder(2, 3)}`);
 
 deepEqual([2, 4, 6, 8, 10], [1, 2, 3, 4, 5].map((v) => v * 2));
 
@@ -58,7 +58,7 @@ function getRole() {
     return 'a software developer';
 }
 
-log(`${user} <${email}> is ${getRole()}`);
+equal('Jafar Sadik <dzafar.sadik@gmail.com> is a software developer', `${user} <${email}> is ${getRole()}`);
 
 log(`
        1
@@ -70,17 +70,17 @@ log(`
 function sum(first = 0, ...numbers) {
     return first + numbers.reduce((acc, val) => acc + val, 0);
 }
-log(`sum(1,2,3) = ${sum()}`);
-log(`sum(1,2,3) = ${sum(1,2,3)}`);
+equal('sum() = 0', `sum() = ${sum()}`);
+equal('sum(1,2,3) = 6', `sum(1,2,3) = ${sum(1,2,3)}`);
 
 // Spread operator converts an iterable collection into parameter list
 const numbers = [1, 2, 3, 4, 5, 6, 7];
-log(`max(numbers) = ${Math.max(...numbers)}`);
+equal('max([1..7]) = 7', `max([1..7]) = ${Math.max(...numbers)}`);
 
 // Property shorthand
 var x = 15, y = 14;
 let pos = {x, y};  // instead of {x: x, y: y}
-log('pos', pos);
+log(pos);
 
 // The destructing assignment syntax is JS expression that makes it possible to unpack values from arrays or object into distinct variables.
 // Array decomposition with destructing assignment
@@ -90,7 +90,7 @@ var [v1, ...rest] = [11, 12, 13]; // with extended arguments list
 
 // Object decomposition with destructing assignment
 var {op, lhs, rhs} = {'op': '*', 'lhs': 15, 'rhs': 100};
-log(`${lhs} ${op} ${rhs}`);
+equal('15 * 100', `${lhs} ${op} ${rhs}`);
 
 // Deep object decomposition with destructing assignment
 var {op: op1, lhs: {op: op2}} = {'op': '*', 'lhs': {'op': '+', 'lhs': 1, 'rhs': 2}, 'rhs': 100};

@@ -1,5 +1,6 @@
 // Request library is a simple http client
 import request from 'request'
+import {log} from "./lib/utils"
 import "@babel/polyfill"
 
 let options = {
@@ -10,6 +11,6 @@ let options = {
     }
 };
 
-let callback = (error, response, body) => console.log(JSON.parse(body));
+let callback = (error, response, body) => log(JSON.parse(body));
 
 request(options, callback);

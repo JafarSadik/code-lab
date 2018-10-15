@@ -1,3 +1,5 @@
+import {log} from "./lib/utils"
+
 // Class definition is very concise. Out of many things it supports: constructor, inheritance and static methods.
 class Unit {
     constructor(id, x, y) {
@@ -20,7 +22,7 @@ class Unit {
     }
 }
 
-console.log(new Unit(1, 10, 15));
+log(new Unit(1, 10, 15));
 
 // Class inheritance
 class DisabledUnit extends Unit {
@@ -30,4 +32,4 @@ class DisabledUnit extends Unit {
     }
 }
 
-console.log('> ' + Unit.hidden(12));
+log('> ' + Unit.hidden(12));
