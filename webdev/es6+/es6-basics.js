@@ -1,11 +1,13 @@
-// Importing node modules installed in node_modules directory
+// Importing node modules installed in node_modules directory by name, no path required
 import "@babel/polyfill"
 import {notEqual, deepEqual, equal, ok} from "assert"
 
 // Importing custom modules requires relative paths such as ./lib, ../lib or ../../lib
-import * as messages from "./lib/messages"
+// There are two ways to import named exports from a module
 import {mult, pi} from "./lib/math";
 import {log} from "./lib/utils"
+// ... and one way to import a default export from a module
+import messages from "./lib/messages"
 equal('2π = 6.283184', `2π = ${mult(2, pi)}`);
 ok(messages.wrongPassword !== undefined && messages.requiresAdminRole !== undefined);
 
