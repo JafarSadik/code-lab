@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "clean": "rimraf build dist",
-    "build": "babel . -d ./build --ignore \"./package-all.js, build, dist, node_modules\"",
+    "build": "babel . -d ./build --ignore package-all.js,build,dist,node_modules",
     "package": "mkdirp dist && run-s build package:all",
     "package:all": "node package-all.js"
   },

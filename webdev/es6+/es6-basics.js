@@ -1,15 +1,16 @@
 // Importing node modules installed in node_modules directory by name, no path required
 import "@babel/polyfill"
-import {notEqual, deepEqual, equal, ok} from "assert"
-
+import {deepEqual, equal, notEqual, ok} from "assert"
 // Importing custom modules requires relative paths such as ./lib, ../lib or ../../lib
 // There are two ways to import named exports from a module
 import {mult, pi} from "./lib/math";
-import {log} from "./lib/utils"
+import {log, when} from "./lib/utils"
 // ... and one way to import a default export from a module
 import messages from "./lib/messages"
+
 equal('2π = 6.283184', `2π = ${mult(2, pi)}`);
 ok(messages.wrongPassword !== undefined && messages.requiresAdminRole !== undefined);
+when(() => Math.random() > 0.95).thenExecute(() => console.log("done"));
 
 // Let is similar to var but is only accessible in the block level where it is defined
 let a = 50;
@@ -70,8 +71,9 @@ log(`
 function sum(first = 0, ...numbers) {
     return first + numbers.reduce((acc, val) => acc + val, 0);
 }
+
 equal('sum() = 0', `sum() = ${sum()}`);
-equal('sum(1,2,3) = 6', `sum(1,2,3) = ${sum(1,2,3)}`);
+equal('sum(1,2,3) = 6', `sum(1,2,3) = ${sum(1, 2, 3)}`);
 
 // Spread operator converts an iterable collection into parameter list
 const numbers = [1, 2, 3, 4, 5, 6, 7];
@@ -97,10 +99,10 @@ var {op: op1, lhs: {op: op2}} = {'op': '*', 'lhs': {'op': '+', 'lhs': 1, 'rhs': 
 ok(op1 === '*' && op2 === '+');
 
 // Object and array matching
-var obj = { A: 1 };
-var list = [ 1 ];
-var { A, B = 2 } = obj;
-var [ X, Y = 2 ] = list;
+var obj = {A: 1};
+var list = [1];
+var {A, B = 2} = obj;
+var [X, Y = 2] = list;
 
 // Symbol type can be used to define unique values where otherwise you would use string or number
 notEqual(Symbol('key'), Symbol('key'));

@@ -1,5 +1,5 @@
-import {ok, deepEqual, equal} from "assert"
-import {log, delayed} from "./lib/utils"
+import {deepEqual, equal, ok} from "assert"
+import {log} from "./lib/utils"
 import './lib/extensions/sets'
 
 // Maps hold key-value pairs, support fast lookup, convenient iteration and various utility methods (size, clear, ...)
@@ -38,7 +38,6 @@ weakMap.set(key2, 'value2');
 
 equal('value1', weakMap.get(key1));
 equal('value2', weakMap.get(key2));
-
 
 // A weak set is a set which elements are weakly referenced. An element is removed from the set when there are no more
 // strong references to it. Set Supports only has(), add() and delete()
