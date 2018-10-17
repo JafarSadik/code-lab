@@ -114,3 +114,8 @@ const logLevels = {
 };
 
 log(logLevels.INFO, 'info message');
+
+// Regular expressions support groups
+let dateRegexp = /([0-9]{4})-([0-9]{2})-([0-9]{2})/;
+let [year, month, day] = dateRegexp.exec('2018-11-30').slice(1).map(e => parseInt(e));
+ok(year === 2018 && month === 11 && day === 30);
