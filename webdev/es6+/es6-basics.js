@@ -41,6 +41,19 @@ equal('2 + 3 = 5', `2 + 3 = ${adder(2, 3)}`);
 
 deepEqual([2, 4, 6, 8, 10], [1, 2, 3, 4, 5].map((v) => v * 2));
 
+// New Array functions
+deepEqual([15, 20, 30], Array.of(15, 20, 30));
+deepEqual(['a', 'b', 'c'], Array.from('abc'));
+deepEqual([15, 20, 30], Array.from([15, 20, 30]));
+deepEqual([20, 40, 60], Array.from([10, 20, 30], x => x * 2));
+deepEqual([1, 2, 3], Array.from(new Set([1, 2, 3, 1, 2, 3, 1, 2, 3])));
+deepEqual([1, 1, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1].fill(0, 2));
+deepEqual({type: 'c', weight: 5}, [{type: 'a', weight: 1}, {type: 'b', weight: 10}, {type: 'c', weight: 5}]
+    .find(item => item.type === 'c'));
+equal(1, [{type: 'a', weight: 1}, {type: 'b', weight: 10}].findIndex(item => item.type === 'b'));
+deepEqual([2, 2, 1, 1, 1, 2, 2], [1, 1, 1, 1, 1, 2, 2].copyWithin(0, 5, 7));
+deepEqual([[0, 'a'], [1, 'b']], Array.from(['a', 'b'].entries()));
+
 // Support for binary literals and unicode
 equal(0b11, 3);
 equal(2, '𝌆'.length);
