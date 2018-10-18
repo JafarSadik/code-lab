@@ -53,6 +53,13 @@ deepEqual({type: 'c', weight: 5}, [{type: 'a', weight: 1}, {type: 'b', weight: 1
 equal(1, [{type: 'a', weight: 1}, {type: 'b', weight: 10}].findIndex(item => item.type === 'b'));
 deepEqual([2, 2, 1, 1, 1, 2, 2], [1, 1, 1, 1, 1, 2, 2].copyWithin(0, 5, 7));
 deepEqual([[0, 'a'], [1, 'b']], Array.from(['a', 'b'].entries()));
+// shift() removes first element from an array and returns this element
+array = [1, 2, 3, 4];
+ok(1, array.shift());
+deepEqual([2, 3, 4], array);
+// unshift() adds one or more elements to the beginning of an array and returns the length of the array
+equal(6, array.unshift(-1, 0, 1));
+deepEqual([-1, 0, 1, 2, 3, 4], array);
 
 // Support for binary literals and unicode
 equal(0b11, 3);
