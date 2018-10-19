@@ -139,3 +139,7 @@ log(logLevels.INFO, 'info message');
 let dateRegexp = /([0-9]{4})-([0-9]{2})-([0-9]{2})/;
 let [year, month, day] = dateRegexp.exec('2018-11-30').slice(1).map(e => parseInt(e));
 ok(year === 2018 && month === 11 && day === 30);
+
+// package.json can be easily used by build script
+import project from '../package.json'
+console.log(`Project ${project.name} ${project.version}`);
