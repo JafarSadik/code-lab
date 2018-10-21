@@ -1,6 +1,33 @@
 import "@babel/polyfill"
 import {deepEqual, equal, notEqual, ok} from "assert"
 
+/*
+    First class functions.
+
+    In a functional programming language functions are first-class citizens. They can be assigned to variables,
+    used as an argument to other functions or returned from functions.
+*/
+const len = (message) => message.length;
+deepEqual([1, 2, 3], ["a", "ab", "abc"].map(e => len(e)));
+
+function operator(type) {
+    switch (type) {
+        case 'mul':
+            return (a, b) => a * b;
+        case 'add':
+            return (a, b) => a + b;
+    }
+}
+
+equal(6, operator('mul')(2, 3));
+equal(5, operator('add')(2, 3));
+
+/*
+    Higher Order Functions
+
+    Functions that accept functions as arguments or return functions are called Higher Order Functions.
+    Examples in the standard JavaScript library include: Array: filter, Array.map, Array.reduce.
+*/
 
 // map() creates a new array with the results of calling a provided function on every element
 deepEqual([4, 2, 11], ['this', 'is', 'interesting'].map(word => word.length));
@@ -40,3 +67,19 @@ deepEqual([], [1, 2, 3].zip([]));
 deepEqual([[1, {a: '1', b: '2', c: '3'}]], [1, 2, 3, 5, 6].zip([{a: '1', b: '2', c: '3'}]));
 deepEqual([[1, 3]], [1, 2].zip([3]));
 deepEqual([[1, 'a'], [2, 'b'], [3, 'c'], [4, 'd'], [5, 'e']], [1, 2, 3, 4, 5].zip(['a', 'b', 'c', 'd', 'e']));
+
+/*
+    Referential Transparency and Pure functions
+
+    An expression is called Referentially Transparent if it can be replaced with its corresponding value without
+    changing the program's behavior. This requires that all functions involved in the expression are pure.
+
+    Pure Function is a function where the return value is only determined by its arguments without any side effects.
+    They are easier to understand, test and enable techniques like memoization and lazy loading.
+ */
+
+function isEmpty(array) {
+    return array.length === 0;
+}
+
+ok(isEmpty([]));
