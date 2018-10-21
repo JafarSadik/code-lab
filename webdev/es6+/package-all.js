@@ -7,7 +7,6 @@ const jsFiles = (file) => file.endsWith('.js');
 
 fileSystem.readdirSync(buildDir).filter(jsFiles).forEach(bundle);
 
-
 function bundle(js) {
     let minJs = js.replace('.js', '.min.js');
 
