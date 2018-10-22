@@ -15,18 +15,18 @@
     "build:electric-field": "run-p electric-field:*",
     "electric-field:js": "babel electric-field/**/*.js -d build",
     "electric-field:copy-assets": "cpx electric-field/**/*.{html,css} build/electric-field",
-    "*** Canvas Carpets ***": "",
-    "build:canvas-carpets": "run-p canvas-carpets:*",
-    "canvas-carpets:js": "babel canvas-carpets/**/*.js -d build",
-    "canvas-carpets:copy-assets": "cpx canvas-carpets/**/*.{html,css} build/canvas-carpets"
+    "*** Canvas Patterns ***": "",
+    "build:canvas-patterns": "run-p canvas-patterns:*",
+    "canvas-patterns:js": "babel canvas-patterns/**/*.js -d build",
+    "canvas-patterns:copy-assets": "cpx canvas-patterns/**/*.{html,css} build/canvas-patterns"
   },
   "watch": {
     "build:electric-field": {
       "patterns": "electric-field",
       "extensions": "html,css,js"
     },
-    "build:canvas-carpets": {
-      "patterns": "canvas-carpets",
+    "build:canvas-patterns": {
+      "patterns": "canvas-patterns",
       "extensions": "html,css,js"
     }
   },
