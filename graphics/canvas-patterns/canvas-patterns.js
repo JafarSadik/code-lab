@@ -36,6 +36,12 @@ class CanvasPattern {
     }
 }
 
+class Colour {
+    constructor(r, g, b, a) {
+        this.r
+    }
+}
+
 const pattern1 = new CanvasPattern('pattern1', (x, y) => {
     let c = 50 + Math.sin(x * y) * y;
     return [c, c, c, c];
