@@ -136,13 +136,7 @@ class RomanNumeralConverterSpec extends Specification {
         thrown NumberFormatException
 
         where:
-        romanNumber | _
-        'IL'        | _
-        'LC'        | _
-        'DM'        | _
-        'VM'        | _
-        'XM'        | _
-        'IM'        | _
+        romanNumber << ['IL', 'LC', 'DM', 'VM', 'XM', 'IM']
     }
 
     def "conversion should fail when too many symbols in a row"() {
@@ -153,15 +147,7 @@ class RomanNumeralConverterSpec extends Specification {
         thrown NumberFormatException
 
         where:
-        romanNumber | _
-        'IIII'      | _
-        'IIIII'     | _
-        'XXXX'      | _
-        'XXXXX'     | _
-        'CCCC'      | _
-        'CCCCC'     | _
-        'MMMMM'     | _
-        'MMMMMM'    | _
+        romanNumber << ['IIII', 'IIIII', 'XXXX', 'XXXXX', 'CCCC', 'CCCCC', 'MMMMM', 'MMMMMM']
     }
 
     def "conversion should fail when wrong symbols in a row"() {
@@ -172,13 +158,7 @@ class RomanNumeralConverterSpec extends Specification {
         thrown NumberFormatException
 
         where:
-        romanNumber | _
-        'VV'        | _
-        'VVV'       | _
-        'LL'        | _
-        'LLL'       | _
-        'DD'        | _
-        'DDD'       | _
+        romanNumber << ['VV', 'VVV', 'LL', 'LLL', 'DD', 'DDD']
     }
 
     private static int toDecimal(String romanNumeral) {
