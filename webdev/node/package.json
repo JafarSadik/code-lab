@@ -17,6 +17,7 @@
     "@babel/polyfill": "^7.0.0",
     "assert": "^1.4.1",
     "express": "^4.16.3",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "underscore": "^1.9.1"
   }
 }
