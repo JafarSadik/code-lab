@@ -35,8 +35,6 @@ ok(proxy2._state === 20 && proxy2.calc(2) === 40 && proxy2._zero() === 0);
 
 // A proxy that prevents access to a 'private' object members
 function preventPrivateAccess(target) {
-    const self = target;
-
     function failWhenPropertyIsPrivate(key) {
         if (key.startsWith("_")) {
             throw new Error(`access to private member: ${key}`);
@@ -49,9 +47,7 @@ function preventPrivateAccess(target) {
             failWhenPropertyIsPrivate(key);
 
             if (typeof property === "function") {
-                return function (...args) {
-                    return property.apply(self, args);
-                };
+                return (...args) => property.apply(target, args)
             }
             else return property;
         },
