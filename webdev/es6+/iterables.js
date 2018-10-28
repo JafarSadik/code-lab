@@ -42,7 +42,7 @@ deepEqual([1, 10, 100, 1000], Array.from(iterable2));
 
 
 // It's also possible to extend existing types to support iteration. In the following example we iterate over digits in a Number.
-// The rests of modulo division are kept on stack and later returned in a reverse order.
+// The rests of modulo division are kept on the call stack and later returned in a reverse order.
 Number.prototype[Symbol.iterator] = function* (arg) {
     let value = arg || this;
 
