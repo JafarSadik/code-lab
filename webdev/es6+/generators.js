@@ -89,3 +89,21 @@ deepEqual([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 159
 let fibSeq = fibonacci();
 let next = (param) => fibSeq.next(param).value;
 deepEqual([0, 1, 1, 2, 0, 1, 1, 2, 3], [next(), next(), next(), next(), next(true), next(), next(), next(), next()]);
+
+
+// Generators can be defined as object's methods
+let obj = {
+    * seq1() {
+        yield 1;
+        yield 2;
+        yield 3;
+        yield* this.seq2()
+    },
+    * seq2() {
+        yield 4;
+        yield 5;
+    }
+};
+
+deepEqual([1, 2, 3, 4, 5], Array.from(obj.seq1()));
+deepEqual([4, 5], Array.from(obj.seq2()));
