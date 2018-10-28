@@ -1,0 +1,35 @@
+#root {
+    margin:0 auto;
+    max-width: 50em;
+}
+
+body {
+    font-family: "Helvetica", "Arial", sans-serif;
+    color: #555;
+    line-height: 1.5;
+    padding: 1em 1em;
+}
+
+h1, h2, h3, h4 strong {
+    color: #333;
+}
+
+code, pre {
+    background: #eee;
+}
+
+code {
+    padding: 2px 4px;
+    vertical-align: text-bottom;
+}
+
+pre {
+    padding: 1em;
+}
+
+.timer {
+    font-size: 10px;
+    color: white;
+    background-color: #4183c4;
+    width: 20em;
+}

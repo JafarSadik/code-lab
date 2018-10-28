@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Vue.js basics</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="basics/styles.css"/>
+    </head>
+
+    <body>
+        <div id="root">
+            <h3 class="title">{{title}}</h3>
+            <p>{{description}}</p>
+
+            <p>The library used is hosted on CDN.</p>
+            <code>
+                &lt;script src="https://cdn.jsdelivr.net/npm/vue"&gt;&lt;/script&gt;;
+            </code>
+
+            <h4>Creating Vue.js instance and attaching it to a root page element</h4>
+            <code>
+                var app = new Vue({
+                    el: '#root',
+                });
+            </code>
+            <p class="timer">Local time is {{time}}</p>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="basics/app.js"></script>
+    </body>
+</html>
