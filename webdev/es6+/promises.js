@@ -33,6 +33,9 @@ Promise.all([compute(10), compute(100), "string", 60000])
 Promise.all([compute(10), compute(100), "string", 60000])
     .then(([r1, r2, r3, r4]) => console.log(`[9] r1 = ${r1}, r2 = ${r2}, r3 = ${r3}, r4 = ${r4}`));
 
+// Create a resolved or a rejected promise
+Promise.resolve(15).then(value => console.log(`[10] Promise.resolve(15) = ${value}`));
+Promise.reject('Promise.reject() works as expected...').catch(reason => console.log(`[11] ${reason}`));
 
 // Synchronous method that returns a Promise.
 function compute(result) {
