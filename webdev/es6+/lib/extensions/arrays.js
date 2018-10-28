@@ -8,3 +8,13 @@ Array.firstFrom = (iterable, size) => {
     }
     return array;
 };
+
+Array.clone = (array) => array.slice();
+
+Array.prototype.isEmpty = function () {
+    return this.length === 0;
+};
+
+Array.prototype.isNotEmpty = function () {
+    return !this.isEmpty();
+};
