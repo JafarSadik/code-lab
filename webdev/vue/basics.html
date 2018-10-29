@@ -11,18 +11,42 @@
             <h3 class="title">{{title}}</h3>
             <p>{{description}}</p>
 
-            <p>The library used is hosted on CDN.</p>
-            <code>
-                &lt;script src="https://cdn.jsdelivr.net/npm/vue"&gt;&lt;/script&gt;;
-            </code>
+            <p>The library is hosted on CDN.</p>
+            <pre>{{code.cdnUrl}}</pre>
 
-            <h4>Creating Vue.js instance and attaching it to a root page element</h4>
-            <code>
-                var app = new Vue({
-                    el: '#root',
-                });
-            </code>
-            <p class="timer">Local time is {{time}}</p>
+            <h4>Create Vue.js instance and attach it to HTML element</h4>
+            <pre>{{code.example1}}</pre>
+
+            <h4>Pass data to Vue instance and HTML template at creation time</h4>
+            <pre>{{code.example2}}</pre>
+
+            <h4>Computed Properties</h4>
+            <p>The properties provided to a Vue instance via data object are passed "as is". It's possible to define more
+                dynamic behaviour using <i>computed</i> properties. For example, this is lowercase of page title: '{{lowerCase}}'</p>
+            <pre>{{code.example3}}</pre>
+
+            <h4>HTML Templates</h4>
+            <p>HTML rendering is done via the <i>Vue.js template language</i> which allows insertion of variables from the <i>data</i> block.</p>
+            <pre>{{code.example4}}</pre>
+
+            <h4>Vue.js Template Insertion Points</h4>
+            <p>A Vue.js <i>insertion points</i> must contain a JavaScript expression.</p>
+            <pre>{{code.example5}}</pre>
+            But the following won't work:
+            <pre>{{code.example6}}</pre>
+            Function calls are allowed expressions though.
+            <pre>{{code.example7}}</pre>
+
+            <h4>Vue.js Components</h4>
+            <p>A Vue.js component is a reusable HTML element that can be used inside HTML templates. It needs to be registered as follows.</p>
+
+            <pre>{{code.example8}}</pre>
+
+            <p>Once defined component might be reused multiple times. It's also possible to parametrize a component via tag properties.</p>
+            <div><my-component/></div>
+            <div><my-component milliseconds/></div>
+
+            <br/>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/vue"></script>

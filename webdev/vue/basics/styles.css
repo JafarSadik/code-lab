@@ -1,10 +1,7 @@
-#root {
-    margin:0 auto;
-    max-width: 50em;
-}
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,400,500';
 
 body {
-    font-family: "Helvetica", "Arial", sans-serif;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     color: #555;
     line-height: 1.5;
     padding: 1em 1em;
@@ -14,22 +11,24 @@ h1, h2, h3, h4 strong {
     color: #333;
 }
 
-code, pre {
-    background: #eee;
-}
-
-code {
-    padding: 2px 4px;
-    vertical-align: text-bottom;
+#root {
+    margin:0 auto;
+    max-width: 50em;
 }
 
 pre {
-    padding: 1em;
+    background: #eee;
+    padding: 2px 4px;
+    vertical-align: text-bottom;
 }
 
 .timer {
     font-size: 10px;
     color: white;
     background-color: #4183c4;
-    width: 20em;
+    width: 15em;
+}
+
+a, i {
+    color: #e81c4f;
 }
