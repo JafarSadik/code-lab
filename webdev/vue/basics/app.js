@@ -1,6 +1,9 @@
-
 Vue.component('my-component', {
-    template: `<div><p class="timer">Local time is {{time || ""}}</p></div>`,
+    template: `
+        <div>
+            <p class="timer">Local time is {{time || ""}}</p>
+        </div>
+    `,
     data() {
         return {
             time: 0,
