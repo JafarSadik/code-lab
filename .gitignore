@@ -11,6 +11,7 @@ classes/
 out/
 dist/
 .gradle/
+.vagrant/
 
 # sbt
 lib_managed
