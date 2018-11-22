@@ -10,7 +10,13 @@ build/
 classes/
 out/
 dist/
-.gradle/
+
+# gradle
+.gradle
+gradle
+gradlew
+gradlew.bat
+
 .vagrant/
 
 # sbt
