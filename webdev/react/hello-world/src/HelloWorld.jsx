@@ -6,13 +6,25 @@ class HelloWorld extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { active: !!props.active };
+        this.state = {
+            active: !!props.active,
+            indent: true
+        };
         this.handleClick = this.handleClick.bind(this);
+        setInterval(this.changeIndent.bind(this), 1000, this);
     }
 
     handleClick(event) {
         console.log(`changing component state`);
         this.setState({active: !this.state.active})
+    }
+
+    changeIndent(event) {
+        this.setState({indent: !this.state.indent})
+    }
+
+    isIndented() {
+        return this.state.indent && this.state.active;
     }
 
     render() {
@@ -32,6 +44,7 @@ class HelloWorld extends Component {
 
         return (
             <div className={"hello " + (this.state.active ? 'active' : '')} onClick={this.handleClick}>
+                {this.isIndented() && <span className="spacer"/>}
                 {this.props.message}
             </div>
         )
