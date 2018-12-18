@@ -1,0 +1,12 @@
+
+p.hello {
+    background-color: orange;
+    width: 150px;
+    text-align: center;
+}
+
+p.hello.selected {
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
