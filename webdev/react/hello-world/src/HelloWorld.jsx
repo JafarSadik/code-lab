@@ -7,7 +7,7 @@ class HelloWorld extends Component {
         super(props);
 
         this.state = { active: !!props.active };
-        //this.handleClick = this.handleClick.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick(event) {
@@ -31,7 +31,7 @@ class HelloWorld extends Component {
             )*/
 
         return (
-            <div className={"hello " + (this.state.active ? 'active' : '')} onClick={this.handleClick.bind(this)}>
+            <div className={"hello " + (this.state.active ? 'active' : '')} onClick={this.handleClick}>
                 {this.props.message}
             </div>
         )

@@ -10,7 +10,7 @@ let page =
         <HelloWorld active message='Hello World !!!'/>
         <HelloWorld message='Hello World'/>
         <HelloWorld message=':D'/>
-    </>
+    </>;
 
 ReactDOM.render(page, rootElement);
 
