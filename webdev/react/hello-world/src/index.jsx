@@ -7,7 +7,7 @@ let rootElement = document.getElementById('root');
 
 let page =
     <>
-        <HelloWorld selected message='Hello World !!!'/>
+        <HelloWorld active message='Hello World !!!'/>
         <HelloWorld message='Hello World'/>
         <HelloWorld message=':D'/>
     </>
