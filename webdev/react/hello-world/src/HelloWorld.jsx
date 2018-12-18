@@ -18,15 +18,11 @@ class HelloWorld extends Component {
                 ]
             )*/
 
-        // Render two paragraphs with JSX
         return (
-            <>
-                <p class="hello">Hello World!!!</p>
-
-                <p class="hello selected">Hello World!!!</p>
-            </>
+            <p class={"hello " + (this.props.selected ? 'selected' : '')}>
+                {this.props.message}
+            </p>
         )
-
     }
 }
 
