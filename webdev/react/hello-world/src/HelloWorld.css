@@ -9,7 +9,3 @@ div.hello {
 div.hello.active {
     font-weight: bolder;
 }
-
-span.spacer {
-    margin: 5px;
-}

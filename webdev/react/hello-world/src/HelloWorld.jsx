@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import Spacer from './Spacer'
 import './HelloWorld.css'
 
 class HelloWorld extends Component {
@@ -44,7 +45,7 @@ class HelloWorld extends Component {
 
         return (
             <div className={"hello " + (this.state.active ? 'active' : '')} onClick={this.handleClick}>
-                {this.isIndented() && <span className="spacer"/>}
+                {this.isIndented() && <Spacer/>}
                 {this.props.message}
             </div>
         )
