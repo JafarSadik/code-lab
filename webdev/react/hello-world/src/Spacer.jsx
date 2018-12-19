@@ -1,10 +1,5 @@
-import React, {Component} from "react"
+import React from "react"
 
-class Spacer extends Component {
+const Spacer = (props) => <span style={{margin: props.space || '5px'}}/>;
 
-    render() {
-        return <span style={{margin: '5px'}}/>
-    }
-}
-
-export default Spacer;
+export default Spacer

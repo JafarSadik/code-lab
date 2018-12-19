@@ -2,14 +2,14 @@ import React, {Component} from "react"
 import Spacer from './Spacer'
 import './HelloWorld.css'
 
-class HelloWorld extends Component {
+export default class HelloWorld extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
             active: !!props.active,
-            indent: true
+            indent: Math.random() < 0.5
         };
         this.handleClick = this.handleClick.bind(this);
         setInterval(this.changeIndent.bind(this), 1000, this);
@@ -51,5 +51,3 @@ class HelloWorld extends Component {
         )
     }
 }
-
-export default HelloWorld
