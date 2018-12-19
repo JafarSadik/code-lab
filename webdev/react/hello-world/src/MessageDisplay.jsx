@@ -1,8 +1,8 @@
-import React, {Component} from "react"
+import React from "react"
 import Spacer from './Spacer'
-import './HelloWorld.css'
+import './MessageDisplay.css'
 
-export default class HelloWorld extends Component {
+export default class MessageDisplay extends React.PureComponent {
 
     constructor(props) {
         super(props);
@@ -25,7 +25,7 @@ export default class HelloWorld extends Component {
     }
 
     isIndented() {
-        return this.state.indent && this.state.active;
+        return this.state.indent && this.state.active && this.props.message;
     }
 
     render() {

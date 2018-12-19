@@ -1,16 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import HelloWorld from './HelloWorld'
+import App from './App'
 
 let rootElement = document.getElementById('root');
-
-let page =
-    <>
-        <HelloWorld active message='Hello World !!!'/>
-        <HelloWorld message='Hello World'/>
-        <HelloWorld message=':D'/>
-    </>;
-
-ReactDOM.render(page, rootElement);
+ReactDOM.render(<App message="Hello World !!!"/>, rootElement);
 

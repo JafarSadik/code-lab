@@ -3,7 +3,7 @@ div.hello {
     background-color: orange;
     width: 150px;
     text-align: center;
-    margin: 5px
+    margin: 5px;
 }
 
 div.hello.active {
