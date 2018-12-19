@@ -11,17 +11,17 @@ export default class HelloWorld extends Component {
             active: !!props.active,
             indent: Math.random() < 0.5
         };
-        this.handleClick = this.handleClick.bind(this);
+
         setInterval(this.changeIndent.bind(this), 1000, this);
     }
 
-    handleClick(event) {
+    handleClick = (event) => {
         console.log(`changing component state`);
-        this.setState({active: !this.state.active})
-    }
+        this.setState((state) => ({active: !state.active}))
+    };
 
     changeIndent(event) {
-        this.setState({indent: !this.state.indent})
+        this.setState((state) => ({indent: !state.indent}))
     }
 
     isIndented() {
