@@ -3,7 +3,7 @@
 This is a simple console version of a drawing program. 
 At this time, the functionality of the program is quite limited.  
 
-In a nutshell, the program should works as follows:  
+In a nutshell, the program should work as follows:  
  1. Create a new canvas  
  2. Start drawing on the canvas by issuing various commands  
  3. Quit  
@@ -18,3 +18,61 @@ In a nutshell, the program should works as follows:
 | D x y           | Delete the shape or empty the area connected to (x, y)
 | U               | Undo the last action on the current canvas
 | Q               | Quit the program.  
+
+Below is a sample run of the program. User input is prefixed with ’enter command:’.
+
+```
+enter command: C 20 4
+----------------------
+|                    |
+|                    |
+|                    |
+|                    |
+----------------------
+```
+
+­­­­­­­­­­­­­­­­­­­
+
+```
+enter command: L 1 2 6 2
+----------------------
+|                    |
+|xxxxxx              |
+|                    |
+|                    |
+----------------------
+```
+
+```
+enter command: L 6 3 6 4
+----------------------
+|                    |
+|xxxxxx              |
+|     x              |
+|     x              |
+----------------------
+```
+
+```
+enter command: R 16 1 20 3
+----------------------
+|               xxxxx|
+|xxxxxx         x   x|
+|     x         xxxxx|
+|     x              |
+----------------------
+```
+
+```
+enter command: B 10 3 o
+----------------------
+|oooooooooooooooxxxxx|
+|xxxxxxooooooooox   x|
+|     xoooooooooxxxxx|
+|     xoooooooooooooo|
+----------------------
+```
+
+```
+enter command: Q
+```
