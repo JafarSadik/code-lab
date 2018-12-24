@@ -1,4 +1,4 @@
-## Description
+## Console Canvas
 
 This is a simple console version of a drawing program. 
 At this time, the functionality of the program is quite limited.  
@@ -18,4 +18,3 @@ In a nutshell, the program should works as follows:
 | D x y           | Delete the shape or empty the area connected to (x, y)
 | U               | Undo the last action on the current canvas
 | Q               | Quit the program.  
-
