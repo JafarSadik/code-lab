@@ -1,31 +1,30 @@
 package kata.consolecanvas.editor.commands.builders
 
-import kata.consolecanvas.editor.commands.NewCommand
+import kata.consolecanvas.editor.commands.UndoCommand
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 
-class NewCommandBuilderTest : BaseCommandBuilderTest() {
+class UndoCommandBuilderTest : BaseCommandBuilderTest() {
 
-    override fun commandBuilder() = NewCommandBuilder
+    override fun commandBuilder() = UndoCommandBuilder
 
     @Test
     fun `should verify if the command can be handled`() {
         assertCanHandleCommands(
-                "C 0 0",
-                "C 10 5"
+                "U"
         )
 
         assertCannotHandleCommands(
-                "C",
-                "C 1",
-                "C 1 2 3",
+                "U ?",
+                "U 1",
+                "U 1 2 3",
                 "? 1 1"
         )
     }
 
     @Test
     fun `should build a command given valid syntax`() {
-        assertThat(buildCommand("C 10 10"))
-                .isInstanceOf(NewCommand::class.java)
+        assertThat(buildCommand("U"))
+                .isInstanceOf(UndoCommand::class.java)
     }
 }

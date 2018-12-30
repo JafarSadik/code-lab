@@ -6,7 +6,7 @@ import org.junit.Test
 
 class DrawRectangleCommandBuilderTest : BaseCommandBuilderTest() {
 
-    override fun commandBuilder() = DrawRectCommandBuilder()
+    override fun commandBuilder() = DrawRectCommandBuilder
 
     @Test
     fun `should verify if the command can be handled`() {

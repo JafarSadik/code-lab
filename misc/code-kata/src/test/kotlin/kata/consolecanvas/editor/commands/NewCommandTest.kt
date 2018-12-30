@@ -2,7 +2,6 @@ package kata.consolecanvas.editor.commands
 
 import kata.consolecanvas.canvas.Canvas2D
 import kata.consolecanvas.editor.EditorContext
-import kata.consolecanvas.editor.commands.NewCommand
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

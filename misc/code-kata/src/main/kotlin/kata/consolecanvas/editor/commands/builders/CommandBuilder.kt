@@ -3,7 +3,8 @@ package kata.consolecanvas.editor.commands.builders
 import kata.consolecanvas.editor.EditorContext
 import kata.consolecanvas.editor.commands.Command
 
-abstract class CommandBuilder(val regex: Regex) {
+abstract class CommandBuilder(pattern: String) {
+    private val regex: Regex = pattern.toRegex()
 
     fun canHandle(command: String) = regex.matches(command)
 

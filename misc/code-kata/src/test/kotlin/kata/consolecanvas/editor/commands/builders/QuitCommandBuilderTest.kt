@@ -6,7 +6,7 @@ import org.junit.Test
 
 class QuitCommandBuilderTest : BaseCommandBuilderTest() {
 
-    override fun commandBuilder() = QuitCommandBuilder()
+    override fun commandBuilder() = QuitCommandBuilder
 
     @Test
     fun `should verify if the command can be handled`() {

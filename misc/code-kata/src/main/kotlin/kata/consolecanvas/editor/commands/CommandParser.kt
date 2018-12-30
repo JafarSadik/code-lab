@@ -8,19 +8,15 @@ import kata.consolecanvas.editor.commands.builders.*
  */
 class CommandParser(private val editorContext: EditorContext) {
 
-    private val commandBuilders = listOf(QuitCommandBuilder(), NewCommandBuilder(),
-            FillCommandBuilder(), DrawLineCommandBuilder(), DrawRectCommandBuilder())
+    private val commandBuilders = listOf(QuitCommandBuilder, NewCommandBuilder,
+            FillCommandBuilder, DrawLineCommandBuilder, DrawRectCommandBuilder, UndoCommandBuilder)
 
     fun parse(commandString: String): Command = parseTrimmed(commandString.trim())
 
     private fun parseTrimmed(commandString: String): Command {
         val commandBuilder = commandBuilders.find { it.canHandle(commandString) }
 
-        if (commandBuilder != null) {
-            return commandBuilder.build(editorContext, commandString)
-        } else {
-            return UnknownCommand(commandString)
-        }
+        return commandBuilder?.build(editorContext, commandString) ?: UnknownCommand(commandString)
     }
 }
 

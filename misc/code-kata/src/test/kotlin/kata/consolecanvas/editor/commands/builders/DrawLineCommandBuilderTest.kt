@@ -6,7 +6,7 @@ import org.junit.Test
 
 class DrawLineCommandBuilderTest : BaseCommandBuilderTest() {
 
-    override fun commandBuilder() = DrawLineCommandBuilder()
+    override fun commandBuilder() = DrawLineCommandBuilder
 
     @Test
     fun `should verify if the command can be handled`() {

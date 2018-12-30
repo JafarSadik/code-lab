@@ -1,5 +1,6 @@
 package kata.consolecanvas.canvas
 
+import kata.consolecanvas.common.ignore
 import java.util.*
 import kotlin.math.max
 import kotlin.math.min
@@ -9,7 +10,7 @@ import kotlin.math.min
  * like drawing points, lines, rectangles, filling shapes
  */
 open class Canvas2D(val width: Int, val height: Int) {
-    private val canvasData: CharArray
+    private val canvasData: CanvasData
 
     init {
         require(width >= 0 && height >= 0) {
@@ -39,7 +40,7 @@ open class Canvas2D(val width: Int, val height: Int) {
                 from.x > to.x -> drawLine(to, from)
                 from.y == to.y -> drawHorizontalLine(from, to)
                 from.x == to.x -> drawVerticalLine(from, to)
-                else -> nothing
+                else -> ignore
             }
 
     open fun drawRect(upperLeftCorner: Point, lowerRightCorner: Point) {
@@ -110,6 +111,10 @@ open class Canvas2D(val width: Int, val height: Int) {
         }
     }
 
+    open fun getData(): CanvasData = canvasData.copyOf()
+
+    open fun setData(canvasData: CanvasData) = canvasData.copyInto(this.canvasData)
+
     private fun drawHorizontalLine(from: Point, to: Point) =
             (from.x..to.x).forEach { x -> setPixel(Point(x, from.y), lineColour) }
 
@@ -120,11 +125,9 @@ open class Canvas2D(val width: Int, val height: Int) {
 
     private fun inBounds(x: Int, y: Int) = x in 1..width && y in 1..height
 
-    private fun emptyCanvas(): CharArray {
-        val canvas = CharArray(width * height)
+    private fun emptyCanvas(): CanvasData {
+        val canvas = CanvasData(width * height)
         canvas.fill(emptyColour)
         return canvas
     }
-
-    private val nothing: Unit = Unit
 }

@@ -9,7 +9,7 @@ import kata.consolecanvas.editor.commands.DrawRectangleCommand
  * Builds commands of type DrawRectangleCommand
  * syntax: R x1 y1 x2 y2
  */
-class DrawRectCommandBuilder : CommandBuilder(regex = """R\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)""".toRegex()) {
+object DrawRectCommandBuilder : CommandBuilder("""R\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)""") {
 
     override fun build(editorContext: EditorContext, regexGroups: List<String>): Command {
         val (_, x1, y1, x2, y2) = regexGroups

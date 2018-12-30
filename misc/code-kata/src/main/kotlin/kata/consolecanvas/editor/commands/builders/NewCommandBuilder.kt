@@ -8,7 +8,7 @@ import kata.consolecanvas.editor.commands.NewCommand
  * Builds commands of type NewCommand
  * syntax: C
  */
-class NewCommandBuilder : CommandBuilder(regex = """C\s+(\d+)\s+(\d+)""".toRegex()) {
+object NewCommandBuilder : CommandBuilder("""C\s+(\d+)\s+(\d+)""") {
 
     override fun build(editorContext: EditorContext, regexGroups: List<String>): Command {
         val (_, width, height) = regexGroups

@@ -9,7 +9,7 @@ import kata.consolecanvas.editor.commands.DrawLineCommand
  * Builds commands of type DrawLineCommand
  * syntax: L x1 y1 x2 y2
  */
-class DrawLineCommandBuilder : CommandBuilder(regex = """L\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)""".toRegex()) {
+object DrawLineCommandBuilder : CommandBuilder("""L\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+)""") {
 
     override fun build(editorContext: EditorContext, regexGroups: List<String>): Command {
         val (_, x1, y1, x2, y2) = regexGroups

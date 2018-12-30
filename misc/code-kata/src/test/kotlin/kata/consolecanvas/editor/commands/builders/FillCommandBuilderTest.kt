@@ -6,7 +6,7 @@ import org.junit.Test
 
 class FillCommandBuilderTest : BaseCommandBuilderTest() {
 
-    override fun commandBuilder() = FillCommandBuilder()
+    override fun commandBuilder() = FillCommandBuilder
 
     @Test
     fun `should verify if the command can be handled`() {

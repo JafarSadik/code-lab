@@ -10,7 +10,7 @@ import kata.consolecanvas.editor.commands.FillCommand
  * Builds commands of type FillCommand
  * syntax: B x y colour
  */
-class FillCommandBuilder : CommandBuilder(regex = """B\s+(\d+)\s+(\d+)\s+(\w)""".toRegex()) {
+object FillCommandBuilder : CommandBuilder("""B\s+(\d+)\s+(\d+)\s+(\w)""") {
 
     override fun build(editorContext: EditorContext, regexGroups: List<String>): Command {
         val (_, x, y, colour) = regexGroups
