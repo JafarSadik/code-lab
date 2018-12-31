@@ -1,0 +1,37 @@
+// variable declaration and usage
+@link-color: #428bca; //sea blue
+@link-color-hover: darken(@link-color, 10%);
+
+a,
+.link {
+  color: @link-color;
+}
+
+a:hover {
+  color: @link-color-hover;
+}
+
+.widget {
+  color: #fff;
+  background: @link-color
+}
+
+// variable interpolation; variables can be also used to define selectors, properties, URLs and @import statements
+@selector-name: banner;
+@images: "../img";
+@themes: "themes";
+
+.@{selector-name} {
+  font-weight: bold;
+  line-height: 40px;
+  margin: 0 auto;
+}
+
+body {
+  color: #444;
+  backgound: url("@{images}/white-sand.png");
+}
+
+@import "@{themes}/tidal-wave.less";
+
+
