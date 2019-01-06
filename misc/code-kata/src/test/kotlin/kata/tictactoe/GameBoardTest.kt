@@ -1,6 +1,5 @@
 package kata.tictactoe
 
-import kata.tictactoe.BoardItem.Companion.boardItem
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.Assert.assertEquals
 import org.junit.Assert.fail
@@ -65,12 +64,16 @@ class GameBoardTest {
 
     @Test
     fun `should fail to place move outside of the board`() {
-        assertThatThrownBy { move(-1, 0) }.isInstanceOf(IndexOutOfBoundsException::class.java)
-        assertThatThrownBy { move(0, -1) }.isInstanceOf(IndexOutOfBoundsException::class.java)
-        assertThatThrownBy { move(-1, -1) }.isInstanceOf(IndexOutOfBoundsException::class.java)
-        assertThatThrownBy { move(3, 0) }.isInstanceOf(IndexOutOfBoundsException::class.java)
-        assertThatThrownBy { move(0, 3) }.isInstanceOf(IndexOutOfBoundsException::class.java)
-        assertThatThrownBy { move(3, 3) }.isInstanceOf(IndexOutOfBoundsException::class.java)
+        fun assertMoveFails(row: Int, col: Int) {
+            assertThatThrownBy { move(row, col) }.isInstanceOf(IndexOutOfBoundsException::class.java)
+        }
+
+        assertMoveFails(-1, 0)
+        assertMoveFails(0, -1)
+        assertMoveFails(-1, -1)
+        assertMoveFails(3, 0)
+        assertMoveFails(0, 3)
+        assertMoveFails(3, 3)
     }
 
     /*
@@ -205,11 +208,21 @@ class GameBoardTest {
     }
 
     private fun assertBoard(vararg expectedBoard: Char) {
+        assertBoard(expectedBoard.map {
+            when (it) {
+                'x' -> BoardItem.X
+                'o' -> BoardItem.O
+                else -> BoardItem.EMPTY
+            }
+        })
+    }
+
+    private fun assertBoard(expectedBoard: List<BoardItem>) {
         val diff = mutableListOf<Pair<Int, Int>>()
 
         for (row in 0..2) {
             for (col in 0..2) {
-                if (gameBoard.at(row, col) != boardItem(expectedBoard[row * 3 + col])) {
+                if (gameBoard.at(row, col) != expectedBoard[row * 3 + col]) {
                     diff.add(Pair(row, col))
                 }
             }
