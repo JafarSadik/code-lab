@@ -53,4 +53,9 @@ class CommandParserTest {
         assertThat(commandParser.parse("L 1 1")).isInstanceOf(UnknownCommand::class.java)
         assertThat(commandParser.parse("R 2 1")).isInstanceOf(UnknownCommand::class.java)
     }
+
+    @Test
+    fun `should parse ClearCommand`() {
+        assertThat(commandParser.parse("C")).isInstanceOf(ClearCommand::class.java);
+    }
 }

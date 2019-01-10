@@ -8,7 +8,7 @@ import kata.consolecanvas.editor.commands.builders.*
  */
 class CommandParser(private val editorContext: EditorContext) {
 
-    private val commandBuilders = listOf(QuitCommandBuilder, NewCommandBuilder,
+    private val commandBuilders = listOf(QuitCommandBuilder, NewCommandBuilder, ClearCommandBuilder,
             FillCommandBuilder, DrawLineCommandBuilder, DrawRectCommandBuilder, UndoCommandBuilder)
 
     fun parse(commandString: String): Command = parseTrimmed(commandString.trim())

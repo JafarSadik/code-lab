@@ -115,6 +115,10 @@ open class Canvas2D(val width: Int, val height: Int) {
 
     open fun setData(canvasData: CanvasData) = canvasData.copyInto(this.canvasData)
 
+    open fun clear() {
+        canvasData.fill(emptyColour)
+    }
+
     private fun drawHorizontalLine(from: Point, to: Point) =
             (from.x..to.x).forEach { x -> setPixel(Point(x, from.y), lineColour) }
 

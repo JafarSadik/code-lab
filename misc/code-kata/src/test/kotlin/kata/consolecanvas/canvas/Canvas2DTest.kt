@@ -2,6 +2,7 @@ package kata.consolecanvas.canvas
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.junit.Assert.assertTrue
 import org.junit.Assert.fail
 import org.junit.Test
 
@@ -231,6 +232,17 @@ class Canvas2DTest {
                 ----------------------
                 """.trimIndent()
         )
+    }
+
+    @Test
+    fun `should clear canvas`() {
+        // Given a non empty canvas
+        canvas.fill(Point(10, 3), 'o')
+
+        // Expect the canvas to be empty after clearing it
+        canvas.clear()
+        assertCanvasValid { x, y -> emptyColour }
+        assertTrue(canvas.width == 20 && canvas.height == 10)
     }
 
     @Test
