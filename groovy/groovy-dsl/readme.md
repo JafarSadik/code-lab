@@ -4,7 +4,7 @@ A very simple, internal [Domain Specific Language](https://martinfowler.com/blik
 controlling a robot on a grid-based landscape. 
 
 ### Build and run 
-Minimum requirements: jdk 8, groovy 2.4, gradle 4.5
+Minimum requirements: jdk 8, groovy 2.4, gradle 5.x 
 
 Run scripts with gradle 'application' plugin
 ```bash
